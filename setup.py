@@ -85,5 +85,13 @@ setup(
         'org.molssi.seamm.tk': [
             'PySCF = pyscf_step:PyscfStep',
         ],
-    }
+        'org.molssi.seamm.pyscf': [
+            'SpinOrbit = pyscf_step:SpinOrbitStep',
+            'Energy = pyscf_step:EnergyStep',
+        ],
+        'org.molssi.seamm.pyscf.tk': [
+            'SpinOrbit = pyscf_step:SpinOrbitStep',
+            'Energy = pyscf_step:EnergyStep',
+        ],
+    },
 )
