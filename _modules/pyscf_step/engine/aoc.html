@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pyscf_step.engine.aoc &#8212; SEAMM PySCF Plug-in 2026.11.20 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../../_static/documentation_options.js?v=8ac94872"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pyscf_step/engine/aoc';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.20" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">PySCF</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf_step.engine.aoc</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pyscf_step.engine.aoc</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">"""Average-of-configuration SCF (aoc-SCF) for atoms, in PySCF's GHF.</span>
+
+<span class="sd">PySCF has no average-of-configuration SCF. It is needed for the spin-orbit</span>
+<span class="sd">correction: single determinants of open-shell atoms break the spherical symmetry</span>
+<span class="sd">and relax differently with and without spin-orbit, and the results are not even</span>
+<span class="sd">reproducible (phase 0, SEAMM 5876/5877). The spherical aoc treatment, as Bross,</span>
+<span class="sd">Bacskay, Peterson and Ruscic (J. Phys. Chem. A 127, 704 (2023)) use with DIRAC</span>
+<span class="sd">(Visser et al., J. Chem. Phys. 96, 2910 (1992)), is the only atomic treatment here.</span>
+
+<span class="sd">Validated in SEAMM 5877 (ECP28MDF with SO, uncontracted cc-pVTZ-PP): the I atom 2P</span>
+<span class="sd">splitting is 7560.4 cm-1 (7603 measured; DIRAC aoc-SCF 7587).</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">HARTREE_TO_KJ</span> <span class="o">=</span> <span class="mf">2625.499639</span>
+<span class="n">HARTREE_TO_CM</span> <span class="o">=</span> <span class="mf">219474.6313632</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_pyscf</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span><span class="p">,</span> <span class="n">scf</span>
+
+    <span class="k">return</span> <span class="n">lib</span><span class="p">,</span> <span class="n">scf</span>
+
+
+<div class="viewcode-block" id="make_aoc_class">
+<a class="viewcode-back" href="../../../api/pyscf_step.engine.html#pyscf_step.engine.aoc.make_aoc_class">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_aoc_class</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""The AOCGHF class, built on PySCF's GHF (imported only when needed)."""</span>
+    <span class="n">lib</span><span class="p">,</span> <span class="n">scf</span> <span class="o">=</span> <span class="n">_pyscf</span><span class="p">()</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">AOCGHF</span><span class="p">(</span><span class="n">scf</span><span class="o">.</span><span class="n">ghf</span><span class="o">.</span><span class="n">GHF</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Average-of-configuration SCF for one open shell, in GHF.</span>
+
+<span class="sd">        Closed orbitals have occupation 1; the m open orbitals hold n electrons,</span>
+<span class="sd">        averaged over all C(m, n) determinants. With f = n/m, a = (n-1)/(m-1), unit</span>
+<span class="sd">        projectors D_c, D_o, D1 = D_c + f D_o and G = J - K,</span>
+
+<span class="sd">            E = Tr h D1 + 1/2 Tr D1 G(D1) + 1/2 f (a - f) Tr D_o G(D_o),</span>
+
+<span class="sd">        i.e. the open-open pairs carry f a instead of fractional occupation's f^2.</span>
+<span class="sd">        The orbitals are optimised with an effective Fock in the MO basis whose</span>
+<span class="sd">        off-diagonal blocks are the energy gradient: closed-virtual F_c,</span>
+<span class="sd">        open-virtual F_o, closed-open F_c - f (a - f)/(1 - f) G_o, with</span>
+<span class="sd">        F_c = h + G(D1) and F_o = F_c + (a - f) G(D_o). The closed and open sets are</span>
+<span class="sd">        followed by maximum overlap with the previous iteration's.</span>
+<span class="sd">        """</span>
+
+        <span class="n">_keys</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ghf</span><span class="o">.</span><span class="n">GHF</span><span class="o">.</span><span class="n">_keys</span> <span class="o">|</span> <span class="p">{</span>
+            <span class="s2">"aoc_f"</span><span class="p">,</span>
+            <span class="s2">"aoc_a"</span><span class="p">,</span>
+            <span class="s2">"aoc_m"</span><span class="p">,</span>
+            <span class="s2">"aoc_n"</span><span class="p">,</span>
+            <span class="s2">"_ref_c"</span><span class="p">,</span>
+            <span class="s2">"_ref_o"</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">with_soc</span><span class="p">,</span> <span class="n">c_closed</span><span class="p">,</span> <span class="n">c_open</span><span class="p">,</span> <span class="n">n_open</span><span class="p">):</span>
+            <span class="n">scf</span><span class="o">.</span><span class="n">ghf</span><span class="o">.</span><span class="n">GHF</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">c_open</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">n_open</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"an open shell needs 0 &lt; n &lt; m, not n=</span><span class="si">{</span><span class="n">n_open</span><span class="si">}</span><span class="s2">, m=</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="n">with_soc</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ref_c</span> <span class="o">=</span> <span class="n">c_closed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ref_o</span> <span class="o">=</span> <span class="n">c_open</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aoc_m</span> <span class="o">=</span> <span class="n">m</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aoc_n</span> <span class="o">=</span> <span class="n">n_open</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aoc_f</span> <span class="o">=</span> <span class="n">n_open</span> <span class="o">/</span> <span class="n">m</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aoc_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_open</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_occ</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mo_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">mo_coeff</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"aoc-SCF needs orbitals"</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ovlp</span><span class="p">()</span>
+            <span class="n">nc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ref_c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">ov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ref_c</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">s</span> <span class="o">@</span> <span class="n">mo_coeff</span>
+            <span class="n">pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,ij-&gt;j"</span><span class="p">,</span> <span class="n">ov</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">ov</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">ic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">pc</span><span class="p">)[:</span><span class="n">nc</span><span class="p">]</span>
+            <span class="n">rest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mo_coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">ic</span><span class="p">)</span>
+            <span class="n">ov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ref_o</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">s</span> <span class="o">@</span> <span class="n">mo_coeff</span><span class="p">[:,</span> <span class="n">rest</span><span class="p">]</span>
+            <span class="n">po</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,ij-&gt;j"</span><span class="p">,</span> <span class="n">ov</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">ov</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">io</span> <span class="o">=</span> <span class="n">rest</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">po</span><span class="p">)[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">aoc_m</span><span class="p">]]</span>
+            <span class="n">occ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mo_coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">occ</span><span class="p">[</span><span class="n">ic</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">occ</span><span class="p">[</span><span class="n">io</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aoc_f</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ref_c</span> <span class="o">=</span> <span class="n">mo_coeff</span><span class="p">[:,</span> <span class="n">ic</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ref_o</span> <span class="o">=</span> <span class="n">mo_coeff</span><span class="p">[:,</span> <span class="n">io</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">occ</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">make_rdm1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">mo_coeff</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">mo_coeff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_coeff</span>
+            <span class="k">if</span> <span class="n">mo_occ</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">mo_occ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mo_occ</span>
+            <span class="n">dm</span> <span class="o">=</span> <span class="p">(</span><span class="n">mo_coeff</span> <span class="o">*</span> <span class="n">mo_occ</span><span class="p">)</span> <span class="o">@</span> <span class="n">mo_coeff</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+            <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">tag_array</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="o">=</span><span class="n">mo_occ</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="p">):</span>
+            <span class="n">c_all</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="s2">"mo_coeff"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">occ</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="s2">"mo_occ"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">c_all</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">o</span> <span class="o">=</span> <span class="p">(</span><span class="n">occ</span> <span class="o">&gt;</span> <span class="mf">1e-12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">occ</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-12</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">occ</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-12</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">occ</span> <span class="o">&lt;=</span> <span class="mf">1e-12</span>
+            <span class="n">c_o</span> <span class="o">=</span> <span class="n">c_all</span><span class="p">[:,</span> <span class="n">o</span><span class="p">]</span>
+            <span class="n">d_o</span> <span class="o">=</span> <span class="n">c_o</span> <span class="o">@</span> <span class="n">c_o</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">g_o</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ghf</span><span class="o">.</span><span class="n">GHF</span><span class="o">.</span><span class="n">get_veff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">d_o</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">c_all</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d_o</span><span class="p">,</span> <span class="n">g_o</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_fock</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">h1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">s1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">vhf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">cycle</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">diis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">diis_start_cycle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">level_shift_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">damp_factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">fock_last</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">h1e</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">h1e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hcore</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">s1e</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">s1e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ovlp</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">dm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">vhf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">vhf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_veff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>
+            <span class="n">f_c</span> <span class="o">=</span> <span class="n">h1e</span> <span class="o">+</span> <span class="n">vhf</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">fock</span> <span class="o">=</span> <span class="n">f_c</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">c_all</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d_o</span><span class="p">,</span> <span class="n">g_o</span> <span class="o">=</span> <span class="n">parts</span>
+                <span class="n">f</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aoc_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aoc_a</span>
+                <span class="n">fc</span> <span class="o">=</span> <span class="n">c_all</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">f_c</span> <span class="o">@</span> <span class="n">c_all</span>
+                <span class="n">go</span> <span class="o">=</span> <span class="n">c_all</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">g_o</span> <span class="o">@</span> <span class="n">c_all</span>
+                <span class="n">fo</span> <span class="o">=</span> <span class="n">fc</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">go</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span>
+                <span class="n">fm</span> <span class="o">=</span> <span class="n">fc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span> <span class="o">=</span> <span class="n">fo</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span>
+                <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">v</span><span class="p">)]</span> <span class="o">=</span> <span class="n">fo</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">v</span><span class="p">)]</span>
+                <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span> <span class="o">=</span> <span class="n">fo</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span>
+                <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span> <span class="o">=</span> <span class="n">fc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">go</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span>
+                <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="n">fc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">c</span><span class="p">)]</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">go</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">c</span><span class="p">)]</span>
+                <span class="n">sc</span> <span class="o">=</span> <span class="n">s1e</span> <span class="o">@</span> <span class="n">c_all</span>
+                <span class="n">fock</span> <span class="o">=</span> <span class="n">sc</span> <span class="o">@</span> <span class="n">fm</span> <span class="o">@</span> <span class="n">sc</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diis_start_cycle</span> <span class="k">if</span> <span class="n">diis_start_cycle</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">diis_start_cycle</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">diis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cycle</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">:</span>
+                <span class="n">fock</span> <span class="o">=</span> <span class="n">diis</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">s1e</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">fock</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">h1e</span><span class="p">,</span> <span class="n">vhf</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">fock</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">energy_elec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h1e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vhf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">dm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">h1e</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">h1e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_hcore</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">vhf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">vhf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_veff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>
+            <span class="n">e1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,ji-&gt;"</span><span class="p">,</span> <span class="n">h1e</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">e2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,ji-&gt;"</span><span class="p">,</span> <span class="n">vhf</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">d_o</span><span class="p">,</span> <span class="n">g_o</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+                <span class="n">e2</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="mf">0.5</span>
+                    <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">aoc_f</span>
+                    <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aoc_a</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">aoc_f</span><span class="p">)</span>
+                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,ji-&gt;"</span><span class="p">,</span> <span class="n">g_o</span><span class="p">,</span> <span class="n">d_o</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scf_summary</span><span class="p">[</span><span class="s2">"e1"</span><span class="p">]</span> <span class="o">=</span> <span class="n">e1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scf_summary</span><span class="p">[</span><span class="s2">"e2"</span><span class="p">]</span> <span class="o">=</span> <span class="n">e2</span>
+            <span class="k">return</span> <span class="n">e1</span> <span class="o">+</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e2</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">,</span> <span class="n">fock</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">fock</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">fock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fock</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mo_occ</span><span class="p">))</span>
+            <span class="n">fm</span> <span class="o">=</span> <span class="n">mo_coeff</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">fock</span> <span class="o">@</span> <span class="n">mo_coeff</span>
+            <span class="n">o</span> <span class="o">=</span> <span class="p">(</span><span class="n">mo_occ</span> <span class="o">&gt;</span> <span class="mf">1e-12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mo_occ</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-12</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">mo_occ</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-12</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">mo_occ</span> <span class="o">&lt;=</span> <span class="mf">1e-12</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">)]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                    <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">v</span><span class="p">)]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                    <span class="n">fm</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">o</span><span class="p">)]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">AOCGHF</span></div>
+
+
+
+<div class="viewcode-block" id="determinant_average">
+<a class="viewcode-back" href="../../../api/pyscf_step.engine.html#pyscf_step.engine.aoc.determinant_average">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">determinant_average</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">with_soc</span><span class="p">,</span> <span class="n">mf</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The average of the configuration's determinant energies at mf's orbitals.</span>
+
+<span class="sd">    A check of the aoc energy expression: equal to mf.e_tot to rounding.</span>
+<span class="sd">    """</span>
+    <span class="n">lib</span><span class="p">,</span> <span class="n">scf</span> <span class="o">=</span> <span class="n">_pyscf</span><span class="p">()</span>
+    <span class="n">plain</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+    <span class="n">plain</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="n">with_soc</span>
+    <span class="n">c_all</span><span class="p">,</span> <span class="n">occ</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_coeff</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span>
+    <span class="n">c_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">occ</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-12</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">o_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">occ</span> <span class="o">&gt;</span> <span class="mf">1e-12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">occ</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-12</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">d_c</span> <span class="o">=</span> <span class="n">c_all</span><span class="p">[:,</span> <span class="n">c_idx</span><span class="p">]</span> <span class="o">@</span> <span class="n">c_all</span><span class="p">[:,</span> <span class="n">c_idx</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">energies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">combo</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">o_idx</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">aoc_n</span><span class="p">):</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">c_all</span><span class="p">[:,</span> <span class="nb">list</span><span class="p">(</span><span class="n">combo</span><span class="p">)]</span>
+        <span class="n">energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plain</span><span class="o">.</span><span class="n">energy_tot</span><span class="p">(</span><span class="n">d_c</span> <span class="o">+</span> <span class="n">cc</span> <span class="o">@</span> <span class="n">cc</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">energies</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">energies</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fractional_occ</span><span class="p">(</span><span class="n">n_full</span><span class="p">,</span> <span class="n">n_open</span><span class="p">,</span> <span class="n">n_el_open</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_occ</span><span class="p">(</span><span class="n">mo_energy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mo_coeff</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">mo_energy</span><span class="p">)</span>
+        <span class="n">occ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mo_energy</span><span class="p">))</span>
+        <span class="n">occ</span><span class="p">[</span><span class="n">idx</span><span class="p">[:</span><span class="n">n_full</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">occ</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="n">n_full</span> <span class="p">:</span> <span class="n">n_full</span> <span class="o">+</span> <span class="n">n_open</span><span class="p">]]</span> <span class="o">=</span> <span class="n">n_el_open</span> <span class="o">/</span> <span class="n">n_open</span>
+        <span class="k">return</span> <span class="n">occ</span>
+
+    <span class="k">return</span> <span class="n">get_occ</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_ghf_dm</span><span class="p">(</span><span class="n">dm</span><span class="p">):</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+    <span class="n">da</span><span class="p">,</span> <span class="n">db</span> <span class="o">=</span> <span class="p">(</span><span class="n">dm</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dm</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">dm</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">dm</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">[:</span><span class="n">n</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">da</span>
+    <span class="n">out</span><span class="p">[</span><span class="n">n</span><span class="p">:,</span> <span class="n">n</span><span class="p">:]</span> <span class="o">=</span> <span class="n">db</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_converge</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">dm0</span><span class="p">,</span> <span class="n">conv_tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_cycle</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">conv_tol</span> <span class="o">=</span> <span class="n">conv_tol</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">max_cycle</span> <span class="o">=</span> <span class="n">max_cycle</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">dm0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">converged</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> did not converge"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">e</span>
+
+
+<div class="viewcode-block" id="p_shell_atom">
+<a class="viewcode-back" href="../../../api/pyscf_step.engine.html#pyscf_step.engine.aoc.p_shell_atom">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">p_shell_atom</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">n_p</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Scalar and two-component aoc energies of an atom with an open p shell.</span>
+
+<span class="sd">    For p1 and p5 the jj configurations are exact J states at SCF level: p1 gives</span>
+<span class="sd">    J = 1/2 (p1/2^1) and J = 3/2 (p3/2^1); p5 gives J = 3/2 (p1/2^2 p3/2^3) and</span>
+<span class="sd">    J = 1/2 (p1/2^1 p3/2^4). Each state is the aoc over its jj determinants with its</span>
+<span class="sd">    own orbitals; the scalar 2P is the aoc over the six determinants of p^n. Other</span>
+<span class="sd">    p shells (p2, p3, p4) need a small spinor CI and are refused.</span>
+
+<span class="sd">    The p shell is taken as the six highest occupied spin-orbitals of a spherical,</span>
+<span class="sd">    fractionally occupied calculation, which must split 2 + 4 (p1/2, p3/2) with</span>
+<span class="sd">    spin-orbit and be degenerate without it.</span>
+
+<span class="sd">    Returns a dictionary of energies (Eh), the splitting (cm-1) and the spin-orbit</span>
+<span class="sd">    terms (kJ/mol): E_SO(ground) = E(ground J) - E(2P) and</span>
+<span class="sd">    E_SO(J-avg) = E(J-avg) - E(2P), with E(J-avg) the (2J+1)-weighted average.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">n_p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"p</span><span class="si">{</span><span class="n">n_p</span><span class="si">}</span><span class="s2"> atoms need a spinor CI for their J states; only p1 and p5 are "</span>
+            <span class="s2">"available"</span>
+        <span class="p">)</span>
+    <span class="n">lib</span><span class="p">,</span> <span class="n">scf</span> <span class="o">=</span> <span class="n">_pyscf</span><span class="p">()</span>
+    <span class="n">AOCGHF</span> <span class="o">=</span> <span class="n">make_aoc_class</span><span class="p">()</span>
+    <span class="n">say</span> <span class="o">=</span> <span class="n">log</span> <span class="ow">or</span> <span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">a</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">n_core</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelectron</span> <span class="o">-</span> <span class="n">n_p</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">with_soc</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="n">uhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+        <span class="n">_converge</span><span class="p">(</span><span class="n">uhf</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">sph</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+        <span class="n">sph</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="n">with_soc</span>
+        <span class="n">sph</span><span class="o">.</span><span class="n">get_occ</span> <span class="o">=</span> <span class="n">_fractional_occ</span><span class="p">(</span><span class="n">n_core</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">n_p</span><span class="p">)</span>
+        <span class="n">_converge</span><span class="p">(</span><span class="n">sph</span><span class="p">,</span> <span class="n">_ghf_dm</span><span class="p">(</span><span class="n">uhf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()))</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">sph</span><span class="o">.</span><span class="n">mo_energy</span><span class="p">)</span>
+        <span class="n">core</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">order</span><span class="p">[:</span><span class="n">n_core</span><span class="p">],</span> <span class="n">order</span><span class="p">[</span><span class="n">n_core</span> <span class="p">:</span> <span class="n">n_core</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]</span>
+        <span class="n">e_p</span> <span class="o">=</span> <span class="n">sph</span><span class="o">.</span><span class="n">mo_energy</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">c_sph</span> <span class="o">=</span> <span class="n">sph</span><span class="o">.</span><span class="n">mo_coeff</span>
+        <span class="k">if</span> <span class="n">with_soc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
+                <span class="nb">abs</span><span class="p">(</span><span class="n">e_p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">e_p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
+                <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">e_p</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
+                <span class="ow">and</span> <span class="n">e_p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">e_p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e-3</span>
+            <span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"the p spinors do not split 2 + 4: </span><span class="si">{</span><span class="n">e_p</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">p12</span><span class="p">,</span> <span class="n">p32</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+            <span class="k">if</span> <span class="n">n_p</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="n">configs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">"J=3/2"</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">core</span><span class="p">,</span> <span class="n">p12</span><span class="p">],</span> <span class="n">p32</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                    <span class="s2">"J=1/2"</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">core</span><span class="p">,</span> <span class="n">p32</span><span class="p">],</span> <span class="n">p12</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">configs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">"J=1/2"</span><span class="p">:</span> <span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">p12</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="s2">"J=3/2"</span><span class="p">:</span> <span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">p32</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">e_p</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-5</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"the scalar p spin-orbitals are not degenerate: </span><span class="si">{</span><span class="n">e_p</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="n">configs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"2P"</span><span class="p">:</span> <span class="p">(</span><span class="n">core</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n_p</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">closed</span><span class="p">,</span> <span class="n">opened</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="n">configs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">mf</span> <span class="o">=</span> <span class="n">AOCGHF</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">with_soc</span><span class="p">,</span> <span class="n">c_sph</span><span class="p">[:,</span> <span class="n">closed</span><span class="p">],</span> <span class="n">c_sph</span><span class="p">[:,</span> <span class="n">opened</span><span class="p">],</span> <span class="n">n</span><span class="p">)</span>
+            <span class="n">occ0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">c_sph</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">occ0</span><span class="p">[</span><span class="n">closed</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">occ0</span><span class="p">[</span><span class="n">opened</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">opened</span><span class="p">)</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">_converge</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">c_sph</span><span class="p">,</span> <span class="n">occ0</span><span class="p">))</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"E"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+            <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
+                <span class="n">e_avg</span><span class="p">,</span> <span class="n">ndet</span> <span class="o">=</span> <span class="n">determinant_average</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">with_soc</span><span class="p">,</span> <span class="n">mf</span><span class="p">)</span>
+                <span class="n">entry</span><span class="p">[</span><span class="s2">"determinant_average_check"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e_avg</span> <span class="o">-</span> <span class="n">e</span><span class="p">)</span>
+                <span class="n">entry</span><span class="p">[</span><span class="s2">"n_determinants"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndet</span>
+                <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e_avg</span> <span class="o">-</span> <span class="n">e</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-8</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">"aoc energy check failed for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">e_avg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">"</span>
+                    <span class="p">)</span>
+            <span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s2">"aoc </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: E = </span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span>
+    <span class="n">e_sc</span><span class="p">,</span> <span class="n">e12</span><span class="p">,</span> <span class="n">e32</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="s2">"2P"</span><span class="p">][</span><span class="s2">"E"</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s2">"J=1/2"</span><span class="p">][</span><span class="s2">"E"</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s2">"J=3/2"</span><span class="p">][</span><span class="s2">"E"</span><span class="p">]</span>
+    <span class="n">e_javg</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">e12</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">e32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
+    <span class="n">ground</span> <span class="o">=</span> <span class="s2">"J=3/2"</span> <span class="k">if</span> <span class="n">n_p</span> <span class="o">==</span> <span class="mi">5</span> <span class="k">else</span> <span class="s2">"J=1/2"</span>
+    <span class="n">e_ground</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="n">ground</span><span class="p">][</span><span class="s2">"E"</span><span class="p">]</span>
+    <span class="n">splitting</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e12</span> <span class="o">-</span> <span class="n">e32</span><span class="p">)</span> <span class="o">*</span> <span class="n">HARTREE_TO_CM</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"states"</span><span class="p">:</span> <span class="n">out</span><span class="p">,</span>
+        <span class="s2">"ground"</span><span class="p">:</span> <span class="n">ground</span><span class="p">,</span>
+        <span class="s2">"E_scalar"</span><span class="p">:</span> <span class="n">e_sc</span><span class="p">,</span>
+        <span class="s2">"E_Javg"</span><span class="p">:</span> <span class="n">e_javg</span><span class="p">,</span>
+        <span class="s2">"splitting_cm"</span><span class="p">:</span> <span class="n">splitting</span><span class="p">,</span>
+        <span class="s2">"E_SO_ground_kJ"</span><span class="p">:</span> <span class="p">(</span><span class="n">e_ground</span> <span class="o">-</span> <span class="n">e_sc</span><span class="p">)</span> <span class="o">*</span> <span class="n">HARTREE_TO_KJ</span><span class="p">,</span>
+        <span class="s2">"E_SO_Javg_kJ"</span><span class="p">:</span> <span class="p">(</span><span class="n">e_javg</span> <span class="o">-</span> <span class="n">e_sc</span><span class="p">)</span> <span class="o">*</span> <span class="n">HARTREE_TO_KJ</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

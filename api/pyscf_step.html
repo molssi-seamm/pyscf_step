@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyscf_step package &#8212; SEAMM PySCF Plug-in 2026.11.20 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=c224919a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../_static/documentation_options.js?v=8ac94872"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/pyscf_step';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyscf_step.engine package" href="pyscf_step.engine.html" />
+    <link rel="prev" title="pyscf_step" href="modules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2026.11.20" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/SEAMM logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/SEAMM Inverted 288x181.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">PySCF</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Documentation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../history.html">
+    History
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page" aria-expanded="false" aria-controls="pst-secondary-sidebar-modal">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer_guide/index.html">
+    Developer Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../authors.html">
+    Development Team
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../history.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    Main SEAMM documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi-seamm.github.io">
+    SEAMM Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://molssi.org">
+    MolSSI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/molssi-seamm/geometry_analysis_step" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">pyscf_step</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a aria-current="page" class="current reference internal" href="#">pyscf_step package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html">pyscf_step.engine package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">pyscf_step</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyscf_step package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pyscf-step-package">
+<h1>pyscf_step package<a class="headerlink" href="#pyscf-step-package" title="Link to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyscf_step.engine.html">pyscf_step.engine package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscf_step.engine.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf_step.engine.html#module-pyscf_step.engine.aoc">pyscf_step.engine.aoc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.aoc.determinant_average"><code class="docutils literal notranslate"><span class="pre">determinant_average()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.aoc.make_aoc_class"><code class="docutils literal notranslate"><span class="pre">make_aoc_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.aoc.p_shell_atom"><code class="docutils literal notranslate"><span class="pre">p_shell_atom()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf_step.engine.html#module-pyscf_step.engine.ecp_so">pyscf_step.engine.ecp_so module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.ecp_so.ECPError"><code class="docutils literal notranslate"><span class="pre">ECPError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.ecp_so.add_so_from_jweighted"><code class="docutils literal notranslate"><span class="pre">add_so_from_jweighted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.ecp_so.ecp_with_so"><code class="docutils literal notranslate"><span class="pre">ecp_with_so()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.ecp_so.published"><code class="docutils literal notranslate"><span class="pre">published()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.ecp_so.scalar_table"><code class="docutils literal notranslate"><span class="pre">scalar_table()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.ecp_so.worst_difference"><code class="docutils literal notranslate"><span class="pre">worst_difference()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf_step.engine.html#module-pyscf_step.engine.so_correction">pyscf_step.engine.so_correction module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.so_correction.delta_so"><code class="docutils literal notranslate"><span class="pre">delta_so()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.so_correction.molecule_pair"><code class="docutils literal notranslate"><span class="pre">molecule_pair()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf_step.engine.html#module-pyscf_step.engine.so_driver">pyscf_step.engine.so_driver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.so_driver.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyscf_step.engine.html#pyscf_step.engine.so_driver.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyscf_step.engine.html#module-pyscf_step.engine">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-pyscf_step.basis">
+<span id="pyscf-step-basis-module"></span><h2>pyscf_step.basis module<a class="headerlink" href="#module-pyscf_step.basis" title="Link to this heading">#</a></h2>
+<p>Basis sets and ECPs from the Basis Set Exchange, in PySCF’s internal format.</p>
+<p>This runs in the SEAMM environment (which has basis_set_exchange) and needs no
+PySCF: the task’s input then carries the basis and the ECP, with its spin-orbit
+part, so the PySCF side reads no library. The spin-orbit terms are rebuilt and
+checked by <a class="reference internal" href="pyscf_step.engine.html#module-pyscf_step.engine.ecp_so" title="pyscf_step.engine.ecp_so"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyscf_step.engine.ecp_so</span></code></a>.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="pyscf_step.basis.BasisError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.basis.</span></span><span class="sig-name descname"><span class="pre">BasisError</span></span><a class="reference internal" href="../_modules/pyscf_step/basis.html#BasisError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.basis.BasisError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.basis.P_SHELL">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.basis.</span></span><span class="sig-name descname"><span class="pre">P_SHELL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Al':</span> <span class="pre">1,</span> <span class="pre">'At':</span> <span class="pre">5,</span> <span class="pre">'B':</span> <span class="pre">1,</span> <span class="pre">'Br':</span> <span class="pre">5,</span> <span class="pre">'Cl':</span> <span class="pre">5,</span> <span class="pre">'F':</span> <span class="pre">5,</span> <span class="pre">'Ga':</span> <span class="pre">1,</span> <span class="pre">'I':</span> <span class="pre">5,</span> <span class="pre">'In':</span> <span class="pre">1,</span> <span class="pre">'Tl':</span> <span class="pre">1}</span></span><a class="headerlink" href="#pyscf_step.basis.P_SHELL" title="Link to this definition">#</a></dt>
+<dd><p>Valence p electrons of the neutral atoms whose aoc atom we can do (p1, p5).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.basis.basis_and_ecp">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.basis.</span></span><span class="sig-name descname"><span class="pre">basis_and_ecp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_basis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_orbit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/basis.html#basis_and_ecp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.basis.basis_and_ecp" title="Link to this definition">#</a></dt>
+<dd><p>The basis and ECPs for a set of elements, as the driver takes them.</p>
+<p>Each element uses <code class="docutils literal notranslate"><span class="pre">basis</span></code> if the BSE has it there, else <code class="docutils literal notranslate"><span class="pre">other_basis</span></code>. An
+element with an ECP gets the ECP’s spin-orbit part, checked against the
+published data; an element with an ECP but no such data is refused when
+<code class="docutils literal notranslate"><span class="pre">spin_orbit</span></code> is true.</p>
+<p>Returns (basis {symbol: shells}, ecp {symbol: ecp}, info {symbol: {…}}).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.basis.electron_basis">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.basis.</span></span><span class="sig-name descname"><span class="pre">electron_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/basis.html#electron_basis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.basis.electron_basis" title="Link to this definition">#</a></dt>
+<dd><p>The element’s basis as PySCF’s list [[l, [exp, c…], …], …].</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.basis.has_element">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.basis.</span></span><span class="sig-name descname"><span class="pre">has_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/basis.html#has_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.basis.has_element" title="Link to this definition">#</a></dt>
+<dd><p>Whether the BSE basis <code class="docutils literal notranslate"><span class="pre">name</span></code> covers the element.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.basis.scalar_ecp">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.basis.</span></span><span class="sig-name descname"><span class="pre">scalar_ecp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/basis.html#scalar_ecp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.basis.scalar_ecp" title="Link to this definition">#</a></dt>
+<dd><p>The element’s ECP as PySCF’s [nelec, [[l, by_r], …]], or None.</p>
+<p>The local part (stored by the BSE with the highest angular momentum, one above
+the others) becomes PySCF’s l = -1. Only scalar potentials are accepted: the
+spin-orbit part is rebuilt separately and checked.</p>
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.installer">
+<span id="pyscf-step-installer-module"></span><h2>pyscf_step.installer module<a class="headerlink" href="#module-pyscf_step.installer" title="Link to this heading">#</a></h2>
+<p>Installer for the PySCF plug-in.</p>
+<p>PySCF runs in its own conda environment, <code class="docutils literal notranslate"><span class="pre">seamm-pyscf</span></code> by default, which this
+installer creates and registers in <code class="docutils literal notranslate"><span class="pre">pyscf.ini</span></code>. The environment holds Python 3.12
+from conda-forge and PySCF from PyPI (wheels for Linux x86_64 and macOS arm64), for
+the CPU. GPU4PySCF, for scalar HF/DFT on NVIDIA GPUs, is added only when
+<code class="docutils literal notranslate"><span class="pre">gpu</span> <span class="pre">=</span> <span class="pre">yes</span></code> is set in <code class="docutils literal notranslate"><span class="pre">pyscf.ini</span></code> (or <code class="docutils literal notranslate"><span class="pre">--gpu</span></code> is given); the relativistic
+calculations always run on the CPU.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.installer.GPU_PACKAGES">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.installer.</span></span><span class="sig-name descname"><span class="pre">GPU_PACKAGES</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('gpu4pyscf-cuda12x&gt;=1.9.1',</span> <span class="pre">'cupy-cuda12x[ctk]',</span> <span class="pre">'cutensor-cu12')</span></span><a class="headerlink" href="#pyscf_step.installer.GPU_PACKAGES" title="Link to this definition">#</a></dt>
+<dd><p>The optional GPU packages (CUDA 12 build, as the Interaction EDA step uses).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.installer.Installer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.installer.</span></span><span class="sig-name descname"><span class="pre">Installer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">pyscf_step.installer</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#Installer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.Installer" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InstallerBase</span></code></p>
+<p>Handle the installation of PySCF for the PySCF step.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">install</span></code> creates the conda environment <code class="docutils literal notranslate"><span class="pre">seamm-pyscf</span></code> (Python 3.12),
+installs PySCF in it (and GPU4PySCF if asked), checks it and writes
+<code class="docutils literal notranslate"><span class="pre">pyscf.ini</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update</span></code> upgrades PySCF (within the validated series) in that environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check</span></code> and <code class="docutils literal notranslate"><span class="pre">show</span></code> say what is installed and whether it works.</p></li>
+</ol>
+<p>An environment named in <code class="docutils literal notranslate"><span class="pre">pyscf.ini</span></code> that SEAMM did not create, or an
+<code class="docutils literal notranslate"><span class="pre">installation</span> <span class="pre">=</span> <span class="pre">local</span></code> Python, is never changed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.installer.Installer.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#Installer.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.Installer.check" title="Link to this definition">#</a></dt>
+<dd><p>Check that pyscf.ini points at a working PySCF.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.installer.Installer.exe_version">
+<span class="sig-name descname"><span class="pre">exe_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#Installer.exe_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.Installer.exe_version" title="Link to this definition">#</a></dt>
+<dd><p>The version of PySCF in its environment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.installer.Installer.install">
+<span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#Installer.install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.Installer.install" title="Link to this definition">#</a></dt>
+<dd><p>Create the environment and install PySCF.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.installer.Installer.setup_parser">
+<span class="sig-name descname"><span class="pre">setup_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#Installer.setup_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.Installer.setup_parser" title="Link to this definition">#</a></dt>
+<dd><p>Parse the command line into the options.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.installer.Installer.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#Installer.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.Installer.update" title="Link to this definition">#</a></dt>
+<dd><p>Upgrade PySCF in the environment.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.installer.PROBE">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.installer.</span></span><span class="sig-name descname"><span class="pre">PROBE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\nimport</span> <span class="pre">json\nout</span> <span class="pre">=</span> <span class="pre">{}\ntry:\n</span>&#160;&#160;&#160; <span class="pre">import</span> <span class="pre">pyscf\n</span>&#160;&#160;&#160; <span class="pre">from</span> <span class="pre">pyscf</span> <span class="pre">import</span> <span class="pre">gto,</span> <span class="pre">scf\n</span>&#160;&#160;&#160; <span class="pre">out[&quot;pyscf&quot;]</span> <span class="pre">=</span> <span class="pre">pyscf.__version__\n</span>&#160;&#160;&#160; <span class="pre">out[&quot;ghf_soc&quot;]</span> <span class="pre">=</span> <span class="pre">hasattr(scf.ghf.GHF,</span> <span class="pre">&quot;with_soc&quot;)\n</span>&#160;&#160;&#160; <span class="pre">out[&quot;ecpso&quot;]</span> <span class="pre">=</span> <span class="pre">&quot;ECPso&quot;</span> <span class="pre">in</span> <span class="pre">gto.moleintor._INTOR_FUNCTIONS\nexcept</span> <span class="pre">Exception</span> <span class="pre">as</span> <span class="pre">e:\n</span>&#160;&#160;&#160; <span class="pre">out[&quot;import_error&quot;]</span> <span class="pre">=</span> <span class="pre">f&quot;{type(e).__name__}:</span> <span class="pre">{e}&quot;\ntry:\n</span>&#160;&#160;&#160; <span class="pre">import</span> <span class="pre">gpu4pyscf\n</span>&#160;&#160;&#160; <span class="pre">out[&quot;gpu4pyscf&quot;]</span> <span class="pre">=</span> <span class="pre">gpu4pyscf.__version__\nexcept</span> <span class="pre">Exception:\n</span>&#160;&#160;&#160; <span class="pre">pass\nprint(&quot;PROBE&quot;</span> <span class="pre">+</span> <span class="pre">json.dumps(out))\n'</span></span><a class="headerlink" href="#pyscf_step.installer.PROBE" title="Link to this definition">#</a></dt>
+<dd><p>Imports PySCF and checks the pieces the step uses; no calculation.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.installer.PYSCF">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.installer.</span></span><span class="sig-name descname"><span class="pre">PYSCF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pyscf==2.15.0'</span></span><a class="headerlink" href="#pyscf_step.installer.PYSCF" title="Link to this definition">#</a></dt>
+<dd><p>The PySCF the step was validated with (SEAMM 5876/5877/5879, 2026-11-20). Pinned:
+2.15.1 has no macOS arm64 wheel.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.installer.assess">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.installer.</span></span><span class="sig-name descname"><span class="pre">assess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probe</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#assess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.assess" title="Link to this definition">#</a></dt>
+<dd><p>(usable, [lines]) for a probe of the environment.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.installer.parse">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.installer.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/installer.html#parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.installer.parse" title="Link to this definition">#</a></dt>
+<dd><p>The JSON after <code class="docutils literal notranslate"><span class="pre">tag</span></code> in a script’s output, or None.</p>
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.metadata">
+<span id="pyscf-step-metadata-module"></span><h2>pyscf_step.metadata module<a class="headerlink" href="#module-pyscf_step.metadata" title="Link to this heading">#</a></h2>
+<p>This file contains metadata describing the results from Pyscf</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.metadata.metadata">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.metadata.</span></span><span class="sig-name descname"><span class="pre">metadata</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'results':</span> <span class="pre">{'E_SO</span> <span class="pre">atoms':</span> <span class="pre">{'calculation':</span> <span class="pre">['spin</span> <span class="pre">orbit'],</span> <span class="pre">'description':</span> <span class="pre">&quot;The</span> <span class="pre">sum</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">atoms'</span> <span class="pre">E_SO(J-average)</span> <span class="pre">used</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">correction&quot;,</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'float',</span> <span class="pre">'units':</span> <span class="pre">'kJ/mol'},</span> <span class="pre">'E_SO</span> <span class="pre">molecule':</span> <span class="pre">{'calculation':</span> <span class="pre">['spin</span> <span class="pre">orbit'],</span> <span class="pre">'description':</span> <span class="pre">'E(two-component)</span> <span class="pre">-</span> <span class="pre">E(scalar)</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">molecule',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'float',</span> <span class="pre">'units':</span> <span class="pre">'kJ/mol'},</span> <span class="pre">'atomic</span> <span class="pre">spin-orbit':</span> <span class="pre">{'calculation':</span> <span class="pre">['spin</span> <span class="pre">orbit'],</span> <span class="pre">'description':</span> <span class="pre">'Per</span> <span class="pre">element:</span> <span class="pre">the</span> <span class="pre">computed</span> <span class="pre">J</span> <span class="pre">splitting</span> <span class="pre">(cm^-1)</span> <span class="pre">and</span> <span class="pre">E_SO</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">ground</span> <span class="pre">J</span> <span class="pre">level</span> <span class="pre">and</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">J</span> <span class="pre">average</span> <span class="pre">(kJ/mol)',</span> <span class="pre">'dimensionality':</span> <span class="pre">'{element:</span> <span class="pre">{term:</span> <span class="pre">value}}',</span> <span class="pre">'type':</span> <span class="pre">'json',</span> <span class="pre">'units':</span> <span class="pre">''},</span> <span class="pre">'scalar</span> <span class="pre">energy':</span> <span class="pre">{'calculation':</span> <span class="pre">['spin</span> <span class="pre">orbit'],</span> <span class="pre">'description':</span> <span class="pre">'The</span> <span class="pre">scalar</span> <span class="pre">SCF</span> <span class="pre">energy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">molecule',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'float',</span> <span class="pre">'units':</span> <span class="pre">'E_h'},</span> <span class="pre">'spin-orbit</span> <span class="pre">correction':</span> <span class="pre">{'calculation':</span> <span class="pre">['spin</span> <span class="pre">orbit'],</span> <span class="pre">'description':</span> <span class="pre">&quot;The</span> <span class="pre">molecular</span> <span class="pre">(second-order)</span> <span class="pre">spin-orbit</span> <span class="pre">correction</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">atomization</span> <span class="pre">energy,</span> <span class="pre">delta_SO</span> <span class="pre">=</span> <span class="pre">-E_SO(molecule)</span> <span class="pre">+</span> <span class="pre">sum</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">atoms'</span> <span class="pre">E_SO(J-average)&quot;,</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'property':</span> <span class="pre">'spin-orbit</span> <span class="pre">correction#PySCF#{model}',</span> <span class="pre">'type':</span> <span class="pre">'float',</span> <span class="pre">'units':</span> <span class="pre">'kJ/mol'},</span> <span class="pre">'two-component</span> <span class="pre">energy':</span> <span class="pre">{'calculation':</span> <span class="pre">['spin</span> <span class="pre">orbit'],</span> <span class="pre">'description':</span> <span class="pre">'The</span> <span class="pre">two-component</span> <span class="pre">(spin-orbit)</span> <span class="pre">SCF</span> <span class="pre">energy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">molecule',</span> <span class="pre">'dimensionality':</span> <span class="pre">'scalar',</span> <span class="pre">'type':</span> <span class="pre">'float',</span> <span class="pre">'units':</span> <span class="pre">'E_h'}}}</span></span><a class="headerlink" href="#pyscf_step.metadata.metadata" title="Link to this definition">#</a></dt>
+<dd><p>Description of the computational models for Pyscf.</p>
+<p>Hamiltonians, approximations, and basis set or parameterizations,
+only if appropriate for this code. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">[</span><span class="s2">"computational models"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Hartree-Fock"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"models"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"PM7"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"parameterizations"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"PM7"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"elements"</span><span class="p">:</span> <span class="s2">"1-60,62-83"</span><span class="p">,</span>
+                        <span class="s2">"periodic"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"reactions"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"optimization"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"code"</span><span class="p">:</span> <span class="s2">"mopac"</span><span class="p">,</span>
+                    <span class="p">},</span>
+                    <span class="s2">"PM7-TS"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"elements"</span><span class="p">:</span> <span class="s2">"1-60,62-83"</span><span class="p">,</span>
+                        <span class="s2">"periodic"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"reactions"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"optimization"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                        <span class="s2">"code"</span><span class="p">:</span> <span class="s2">"mopac"</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.pyscf">
+<span id="pyscf-step-pyscf-module"></span><h2>pyscf_step.pyscf module<a class="headerlink" href="#module-pyscf_step.pyscf" title="Link to this heading">#</a></h2>
+<p>Non-graphical part of the PySCF step in a SEAMM flowchart</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.pyscf.</span></span><span class="sig-name descname"><span class="pre">Pyscf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'PySCF'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'org.molssi.seamm.pyscf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">pyscf_step.pyscf</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf.html#Pyscf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf.Pyscf" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>The non-graphical part of a PySCF step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.parser">
+<span class="sig-name descname"><span class="pre">parser</span></span><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.parser" title="Link to this definition">#</a></dt>
+<dd><p>The parser object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>configargparse.ArgParser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.options" title="Link to this definition">#</a></dt>
+<dd><p>It contains a two item tuple containing the populated namespace and the
+list of remaining argument strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.subflowchart">
+<span class="sig-name descname"><span class="pre">subflowchart</span></span><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.subflowchart" title="Link to this definition">#</a></dt>
+<dd><p>A SEAMM Flowchart object that represents a subflowchart, if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seamm.Flowchart</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.parameters" title="Link to this definition">#</a></dt>
+<dd><p>The control parameters for PySCF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PyscfParameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkPyscf</span></code>, <a class="reference internal" href="#pyscf_step.pyscf.Pyscf" title="pyscf_step.pyscf.Pyscf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pyscf</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">PyscfParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf.html#Pyscf.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.analyze" title="Link to this definition">#</a></dt>
+<dd><p>Do any analysis of the output from this step.</p>
+<p>Also print important results to the local step.out file using
+“printer”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indent</strong> (<em>str</em>) – An extra indentation for the output</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.description_text">
+<span class="sig-name descname"><span class="pre">description_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf.html#Pyscf.description_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.description_text" title="Link to this definition">#</a></dt>
+<dd><p>Create the text description of what this step will do.
+The dictionary of control values is passed in as P so that
+the code can test values, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>P</strong> (<em>dict</em>) – An optional dictionary of the current values of the control
+parameters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A description of the current step.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.git_revision">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">git_revision</span></span><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.git_revision" title="Link to this definition">#</a></dt>
+<dd><p>The git version of this module.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf.html#Pyscf.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.run" title="Link to this definition">#</a></dt>
+<dd><p>Run a PySCF step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The next node object in the flowchart.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seamm.Node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.set_id">
+<span class="sig-name descname"><span class="pre">set_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf.html#Pyscf.set_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.set_id" title="Link to this definition">#</a></dt>
+<dd><p>Set the id for node to a given tuple</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.pyscf.Pyscf.version">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#pyscf_step.pyscf.Pyscf.version" title="Link to this definition">#</a></dt>
+<dd><p>The semantic version of this module.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.pyscf_step">
+<span id="pyscf-step-pyscf-step-module"></span><h2>pyscf_step.pyscf_step module<a class="headerlink" href="#module-pyscf_step.pyscf_step" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.pyscf_step.PyscfStep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.pyscf_step.</span></span><span class="sig-name descname"><span class="pre">PyscfStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf_step.html#PyscfStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf_step.PyscfStep" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class needed for the stevedore integration.</p>
+<p>This must provide a <cite>description()</cite> method that returns a dict containing a
+description of this node, and <cite>create_node()</cite> and <cite>create_tk_node()</cite> methods
+for creating the graphical and non-graphical nodes.</p>
+<p>The dictionary for the description is the class variable just below these
+comments. The felds are as follows:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>my_description<span class="classifier">{str, str}</span></dt><dd><p>A human-readable description of this step. It can be
+several lines long, and needs to be clear to non-expert users.
+It contains the following keys: description, group, name.</p>
+</dd>
+<dt>my_description[“description”]<span class="classifier">tuple</span></dt><dd><p>A description of the PySCF step. It must be
+clear to non-experts.</p>
+</dd>
+<dt>my_description[“group”]<span class="classifier">str</span></dt><dd><p>Which group in the menus to put this step. If the group does
+not exist it will be created. Common groups are “Building”,
+“Control”, “Custom”, “Data”, and “Simulations”.</p>
+</dd>
+<dt>my_description[“name”]<span class="classifier">str</span></dt><dd><p>The name of this step, to be displayed in the menus.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf_step.PyscfStep.create_node">
+<span class="sig-name descname"><span class="pre">create_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf_step.html#PyscfStep.create_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf_step.PyscfStep.create_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the new node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flowchart</strong> (<em>seamm.Node</em>) – A non-graphical SEAMM node</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as title, namespace or
+extension representing the title displayed in the flowchart,
+the namespace for the plugins of a subflowchart and
+the extension, respectively.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyscf_step.pyscf.Pyscf" title="pyscf_step.pyscf.Pyscf">Pyscf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf_step.PyscfStep.create_tk_node">
+<span class="sig-name descname"><span class="pre">create_tk_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf_step.html#PyscfStep.create_tk_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf_step.PyscfStep.create_tk_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the graphical Tk node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>canvas</strong> (<em>tk.Canvas</em>) – The Tk Canvas widget</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as tk_flowchart, node, x, y, w, h
+representing a graphical flowchart object, a non-graphical node for
+a step, and dimensions of the graphical node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyscf_step.tk_pyscf.TkPyscf" title="pyscf_step.tk_pyscf.TkPyscf">TkPyscf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.pyscf_step.PyscfStep.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/pyscf_step.html#PyscfStep.description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.pyscf_step.PyscfStep.description" title="Link to this definition">#</a></dt>
+<dd><p>Return a description of what this step does.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict(str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.pyscf_step.PyscfStep.my_description">
+<span class="sig-name descname"><span class="pre">my_description</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description':</span> <span class="pre">'An</span> <span class="pre">interface</span> <span class="pre">for</span> <span class="pre">PySCF',</span> <span class="pre">'group':</span> <span class="pre">'Simulations',</span> <span class="pre">'name':</span> <span class="pre">'PySCF'}</span></span><a class="headerlink" href="#pyscf_step.pyscf_step.PyscfStep.my_description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.spin_orbit">
+<span id="pyscf-step-spin-orbit-module"></span><h2>pyscf_step.spin_orbit module<a class="headerlink" href="#module-pyscf_step.spin_orbit" title="Link to this heading">#</a></h2>
+<p>Non-graphical part of the Spin Orbit step in a PySCF flowchart</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.ECP_BIBTEX">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.spin_orbit.</span></span><span class="sig-name descname"><span class="pre">ECP_BIBTEX</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'peterson2003b':</span> <span class="pre">'&#64;article{peterson2003b,\n</span>&#160; <span class="pre">author</span> <span class="pre">=</span> <span class="pre">{Peterson,</span> <span class="pre">Kirk</span> <span class="pre">A.</span> <span class="pre">and</span> <span class="pre">Figgen,</span> <span class="pre">Detlev</span> <span class="pre">and</span> <span class="pre">Goll,</span> <span class="pre">Erich</span> <span class="pre">and</span> <span class="pre">Stoll,</span> <span class="pre">Hermann\n</span>&#160;&#160;&#160; <span class="pre">and</span> <span class="pre">Dolg,</span> <span class="pre">Michael},\n</span>&#160; <span class="pre">title</span> <span class="pre">=</span> <span class="pre">{Systematically</span> <span class="pre">convergent</span> <span class="pre">basis</span> <span class="pre">sets</span> <span class="pre">with</span> <span class="pre">relativistic</span> <span class="pre">pseudopotentials.\n</span>&#160;&#160;&#160; <span class="pre">{II}.</span> <span class="pre">Small-core</span> <span class="pre">pseudopotentials</span> <span class="pre">and</span> <span class="pre">correlation</span> <span class="pre">consistent</span> <span class="pre">basis</span> <span class="pre">sets</span> <span class="pre">for</span> <span class="pre">the\n</span>&#160;&#160;&#160; <span class="pre">post-d</span> <span class="pre">group</span> <span class="pre">16-18</span> <span class="pre">elements},\n</span>&#160; <span class="pre">journal</span> <span class="pre">=</span> <span class="pre">{J.</span> <span class="pre">Chem.</span> <span class="pre">Phys.},\n</span>&#160; <span class="pre">volume</span> <span class="pre">=</span> <span class="pre">{119},\n</span>&#160; <span class="pre">pages</span> <span class="pre">=</span> <span class="pre">{11113--11123},\n</span>&#160; <span class="pre">year</span> <span class="pre">=</span> <span class="pre">{2003},\n</span>&#160; <span class="pre">doi</span> <span class="pre">=</span> <span class="pre">{10.1063/1.1622924}\n}',</span> <span class="pre">'peterson2006a':</span> <span class="pre">'&#64;article{peterson2006a,\n</span>&#160; <span class="pre">author</span> <span class="pre">=</span> <span class="pre">{Peterson,</span> <span class="pre">Kirk</span> <span class="pre">A.</span> <span class="pre">and</span> <span class="pre">Shepler,</span> <span class="pre">Benjamin</span> <span class="pre">C.</span> <span class="pre">and</span> <span class="pre">Figgen,</span> <span class="pre">Detlev</span> <span class="pre">and\n</span>&#160;&#160;&#160; <span class="pre">Stoll,</span> <span class="pre">Hermann},\n</span>&#160; <span class="pre">title</span> <span class="pre">=</span> <span class="pre">{On</span> <span class="pre">the</span> <span class="pre">Spectroscopic</span> <span class="pre">and</span> <span class="pre">Thermochemical</span> <span class="pre">Properties</span> <span class="pre">of</span> <span class="pre">{ClO},</span> <span class="pre">{BrO},</span> <span class="pre">{IO},\n</span>&#160;&#160;&#160; <span class="pre">and</span> <span class="pre">Their</span> <span class="pre">Anions},\n</span>&#160; <span class="pre">journal</span> <span class="pre">=</span> <span class="pre">{J.</span> <span class="pre">Phys.</span> <span class="pre">Chem.</span> <span class="pre">A},\n</span>&#160; <span class="pre">volume</span> <span class="pre">=</span> <span class="pre">{110},\n</span>&#160; <span class="pre">pages</span> <span class="pre">=</span> <span class="pre">{13877--13883},\n</span>&#160; <span class="pre">year</span> <span class="pre">=</span> <span class="pre">{2006},\n</span>&#160; <span class="pre">doi</span> <span class="pre">=</span> <span class="pre">{10.1021/jp065887l}\n}'}</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.ECP_BIBTEX" title="Link to this definition">#</a></dt>
+<dd><p>The pseudopotential papers, as the Basis Set Exchange cites them.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.ECP_PAPERS">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.spin_orbit.</span></span><span class="sig-name descname"><span class="pre">ECP_PAPERS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Br':</span> <span class="pre">('peterson2003b',),</span> <span class="pre">'I':</span> <span class="pre">('peterson2003b',</span> <span class="pre">'peterson2006a')}</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.ECP_PAPERS" title="Link to this definition">#</a></dt>
+<dd><p>The papers for each element’s pseudopotential.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.spin_orbit.</span></span><span class="sig-name descname"><span class="pre">SpinOrbit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Spin</span> <span class="pre">Orbit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">pyscf_step.spin_orbit</span> <span class="pre">(WARNING)&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit.html#SpinOrbit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyscf_step.substep.Substep" title="pyscf_step.substep.Substep"><code class="xref py py-class docutils literal notranslate"><span class="pre">Substep</span></code></a></p>
+<p>The non-graphical part of a Spin Orbit step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.parser">
+<span class="sig-name descname"><span class="pre">parser</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.parser" title="Link to this definition">#</a></dt>
+<dd><p>The parser object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>configargparse.ArgParser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.options" title="Link to this definition">#</a></dt>
+<dd><p>It contains a two item tuple containing the populated namespace and the
+list of remaining argument strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.subflowchart">
+<span class="sig-name descname"><span class="pre">subflowchart</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.subflowchart" title="Link to this definition">#</a></dt>
+<dd><p>A SEAMM Flowchart object that represents a subflowchart, if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seamm.Flowchart</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.parameters" title="Link to this definition">#</a></dt>
+<dd><p>The control parameters for Spin Orbit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyscf_step.spin_orbit_parameters.SpinOrbitParameters" title="pyscf_step.spin_orbit_parameters.SpinOrbitParameters">SpinOrbitParameters</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkSpinOrbit</span></code>, <a class="reference internal" href="#pyscf_step.spin_orbit.SpinOrbit" title="pyscf_step.spin_orbit.SpinOrbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpinOrbit</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">SpinOrbitParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit.html#SpinOrbit.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.analyze" title="Link to this definition">#</a></dt>
+<dd><p>Print the results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.description_text">
+<span class="sig-name descname"><span class="pre">description_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit.html#SpinOrbit.description_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.description_text" title="Link to this definition">#</a></dt>
+<dd><p>A text description of what this step will do.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.git_revision">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">git_revision</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.git_revision" title="Link to this definition">#</a></dt>
+<dd><p>The git version of this module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.header">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">header</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.header" title="Link to this definition">#</a></dt>
+<dd><p>A printable header for this section of output</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit.html#SpinOrbit.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.run" title="Link to this definition">#</a></dt>
+<dd><p>Run the Spin Orbit step: the atoms, then the molecule, then delta_SO.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.SpinOrbit.version">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#pyscf_step.spin_orbit.SpinOrbit.version" title="Link to this definition">#</a></dt>
+<dd><p>The semantic version of this module.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit.n_functions">
+<span class="sig-prename descclassname"><span class="pre">pyscf_step.spin_orbit.</span></span><span class="sig-name descname"><span class="pre">n_functions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shells</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit.html#n_functions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit.n_functions" title="Link to this definition">#</a></dt>
+<dd><p>The number of spherical functions in a PySCF basis list.</p>
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.spin_orbit_parameters">
+<span id="pyscf-step-spin-orbit-parameters-module"></span><h2>pyscf_step.spin_orbit_parameters module<a class="headerlink" href="#module-pyscf_step.spin_orbit_parameters" title="Link to this heading">#</a></h2>
+<p>Control parameters for the Spin Orbit step in a SEAMM flowchart</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_parameters.SpinOrbitParameters">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.spin_orbit_parameters.</span></span><span class="sig-name descname"><span class="pre">SpinOrbitParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit_parameters.html#SpinOrbitParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit_parameters.SpinOrbitParameters" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Parameters</span></code></p>
+<p>The control parameters for the Spin Orbit sub-step.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpinOrbit</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">TkSpinOrbit</span></code></p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_parameters.SpinOrbitParameters.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'basis':</span> <span class="pre">{'default':</span> <span class="pre">'cc-pVTZ-PP',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Basis</span> <span class="pre">set:',</span> <span class="pre">'enumeration':</span> <span class="pre">('cc-pVTZ-PP',</span> <span class="pre">'aug-cc-pVTZ-PP',</span> <span class="pre">'cc-pVQZ-PP'),</span> <span class="pre">'format_string':</span> <span class="pre">'s',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">basis</span> <span class="pre">set,</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">Basis</span> <span class="pre">Set</span> <span class="pre">Exchange,</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">elements</span> <span class="pre">it</span> <span class="pre">covers;</span> <span class="pre">its</span> <span class="pre">pseudopotentials</span> <span class="pre">must</span> <span class="pre">have</span> <span class="pre">published</span> <span class="pre">spin-orbit</span> <span class="pre">data.',</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'method':</span> <span class="pre">{'default':</span> <span class="pre">'HF',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Method:',</span> <span class="pre">'enumeration':</span> <span class="pre">('HF',),</span> <span class="pre">'format_string':</span> <span class="pre">'s',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">SCF</span> <span class="pre">method.</span> <span class="pre">HF</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">level</span> <span class="pre">Bross</span> <span class="pre">et</span> <span class="pre">al.</span> <span class="pre">recommend.',</span> <span class="pre">'kind':</span> <span class="pre">'enum'},</span> <span class="pre">'other</span> <span class="pre">basis':</span> <span class="pre">{'default':</span> <span class="pre">'cc-pVTZ',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Basis</span> <span class="pre">set</span> <span class="pre">for</span> <span class="pre">other</span> <span class="pre">elements:',</span> <span class="pre">'enumeration':</span> <span class="pre">('cc-pVTZ',</span> <span class="pre">'aug-cc-pVTZ',</span> <span class="pre">'cc-pVQZ'),</span> <span class="pre">'format_string':</span> <span class="pre">'s',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">basis</span> <span class="pre">set</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">elements</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">one</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">cover.',</span> <span class="pre">'kind':</span> <span class="pre">'string'},</span> <span class="pre">'results':</span> <span class="pre">{'default':</span> <span class="pre">{},</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'results',</span> <span class="pre">'enumeration':</span> <span class="pre">(),</span> <span class="pre">'format_string':</span> <span class="pre">'',</span> <span class="pre">'help_text':</span> <span class="pre">'The</span> <span class="pre">results</span> <span class="pre">to</span> <span class="pre">save</span> <span class="pre">to</span> <span class="pre">variables</span> <span class="pre">or</span> <span class="pre">in</span> <span class="pre">tables.',</span> <span class="pre">'kind':</span> <span class="pre">'dictionary'},</span> <span class="pre">'route':</span> <span class="pre">{'default':</span> <span class="pre">'SO-ECP',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Relativistic</span> <span class="pre">route:',</span> <span class="pre">'enumeration':</span> <span class="pre">('SO-ECP',),</span> <span class="pre">'format_string':</span> <span class="pre">'s',</span> <span class="pre">'help_text':</span> <span class="pre">'SO-ECP:</span> <span class="pre">two-component</span> <span class="pre">SCF</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">spin-orbit</span> <span class="pre">part</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">energy-consistent</span> <span class="pre">pseudopotentials,</span> <span class="pre">minus</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">scalar</span> <span class="pre">calculation</span> <span class="pre">(Bross</span> <span class="pre">et</span> <span class="pre">al.,</span> <span class="pre">J.</span> <span class="pre">Phys.</span> <span class="pre">Chem.</span> <span class="pre">A</span> <span class="pre">127,</span> <span class="pre">704</span> <span class="pre">(2023)).',</span> <span class="pre">'kind':</span> <span class="pre">'enum'},</span> <span class="pre">'uncontract':</span> <span class="pre">{'default':</span> <span class="pre">'yes',</span> <span class="pre">'default_units':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'Uncontract</span> <span class="pre">the</span> <span class="pre">basis</span> <span class="pre">sets:',</span> <span class="pre">'enumeration':</span> <span class="pre">('yes',</span> <span class="pre">'no'),</span> <span class="pre">'format_string':</span> <span class="pre">'s',</span> <span class="pre">'help_text':</span> <span class="pre">'Use</span> <span class="pre">the</span> <span class="pre">basis</span> <span class="pre">sets</span> <span class="pre">fully</span> <span class="pre">uncontracted,</span> <span class="pre">as</span> <span class="pre">Bross</span> <span class="pre">and</span> <span class="pre">Peterson</span> <span class="pre">recommend</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">spin-orbit</span> <span class="pre">term.',</span> <span class="pre">'kind':</span> <span class="pre">'boolean'}}</span></span><a class="headerlink" href="#pyscf_step.spin_orbit_parameters.SpinOrbitParameters.parameters" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.spin_orbit_step">
+<span id="pyscf-step-spin-orbit-step-module"></span><h2>pyscf_step.spin_orbit_step module<a class="headerlink" href="#module-pyscf_step.spin_orbit_step" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_step.SpinOrbitStep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.spin_orbit_step.</span></span><span class="sig-name descname"><span class="pre">SpinOrbitStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit_step.html#SpinOrbitStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit_step.SpinOrbitStep" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class needed for the stevedore integration.</p>
+<p>This must provide a <cite>description()</cite> method that returns a dict containing a
+description of this node, and <cite>create_node()</cite> and <cite>create_tk_node()</cite> methods
+for creating the graphical and non-graphical nodes.</p>
+<p>The dictionary for the description is the class variable just below these
+comments. The felds are as follows:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>my_description<span class="classifier">{str, str}</span></dt><dd><p>A human-readable description of this step. It can be
+several lines long, and needs to be clear to non-expert users.
+It contains the following keys: description, group, name.</p>
+</dd>
+<dt>my_description[“description”]<span class="classifier">tuple</span></dt><dd><p>A description of the Spin Orbit step. It must be
+clear to non-experts.</p>
+</dd>
+<dt>my_description[“group”]<span class="classifier">str</span></dt><dd><p>Which group in the menus to put this step. If the group does
+not exist it will be created. Common groups are “Building”,
+“Control”, “Custom”, “Data”, and “Simulations”.</p>
+</dd>
+<dt>my_description[“name”]<span class="classifier">str</span></dt><dd><p>The name of this step, to be displayed in the menus.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_step.SpinOrbitStep.create_node">
+<span class="sig-name descname"><span class="pre">create_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit_step.html#SpinOrbitStep.create_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.create_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the new node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flowchart</strong> (<em>seamm.Node</em>) – A non-graphical SEAMM node</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as title, namespace or
+extension representing the title displayed in the flowchart,
+the namespace for the plugins of a subflowchart and
+the extension, respectively.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyscf_step.spin_orbit.SpinOrbit" title="pyscf_step.spin_orbit.SpinOrbit">SpinOrbit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_step.SpinOrbitStep.create_tk_node">
+<span class="sig-name descname"><span class="pre">create_tk_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit_step.html#SpinOrbitStep.create_tk_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.create_tk_node" title="Link to this definition">#</a></dt>
+<dd><p>Create and return the graphical Tk node object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>canvas</strong> (<em>tk.Canvas</em>) – The Tk Canvas widget</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Various keyword arguments such as tk_flowchart, node, x, y, w, h
+representing a graphical flowchart object, a non-graphical node for
+a step, and dimensions of the graphical node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit" title="pyscf_step.tk_spin_orbit.TkSpinOrbit">TkSpinOrbit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_step.SpinOrbitStep.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/spin_orbit_step.html#SpinOrbitStep.description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.description" title="Link to this definition">#</a></dt>
+<dd><p>Return a description of what this step does.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict(str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.spin_orbit_step.SpinOrbitStep.my_description">
+<span class="sig-name descname"><span class="pre">my_description</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description':</span> <span class="pre">'An</span> <span class="pre">interface</span> <span class="pre">for</span> <span class="pre">Spin</span> <span class="pre">Orbit',</span> <span class="pre">'group':</span> <span class="pre">'Calculations',</span> <span class="pre">'name':</span> <span class="pre">'Spin</span> <span class="pre">Orbit'}</span></span><a class="headerlink" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.my_description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.substep">
+<span id="pyscf-step-substep-module"></span><h2>pyscf_step.substep module<a class="headerlink" href="#module-pyscf_step.substep" title="Link to this heading">#</a></h2>
+<p>Base class for substeps in the PySCF step.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.substep.</span></span><span class="sig-name descname"><span class="pre">Substep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no</span> <span class="pre">title'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;Logger</span> <span class="pre">pyscf_step.substep</span> <span class="pre">(WARNING)&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/substep.html#Substep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.substep.Substep" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>A base class for substeps in the PySCF subflowchart.</p>
+<p>The top-level Pyscf step iterates over the substeps
+of its subflowchart and calls each substep’s <cite>run()</cite> method. Each substep
+is responsible for preparing its own input, invoking PySCF,
+analyzing its output, and storing its results.</p>
+<p>This base class provides:</p>
+<ul class="simple">
+<li><p><cite>is_runable</cite> - whether the top-level loop should call <cite>run()</cite> on this
+substep. Override to return False for substeps that only contribute
+input (e.g., an Initialization step) rather than invoking the code.</p></li>
+<li><p><cite>input_only</cite> - a flag for “write input but don’t run” mode, useful for
+debugging and testing.</p></li>
+<li><p><cite>options</cite> / <cite>global_options</cite> - delegated to the parent step so that
+command-line options reach substeps uniformly.</p></li>
+<li><p><cite>header</cite> - a printable header for this section of step.out.</p></li>
+<li><p><cite>version</cite> / <cite>git_revision</cite> - delegated to the plug-in package so that
+every substep reports the plug-in’s version, not seamm.Node’s.</p></li>
+</ul>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.git_revision">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">git_revision</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.git_revision" title="Link to this definition">#</a></dt>
+<dd><p>The git revision of the pyscf_step package.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.global_options">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">global_options</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.global_options" title="Link to this definition">#</a></dt>
+<dd><p>The global SEAMM options, delegated to the parent step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.header">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">header</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.header" title="Link to this definition">#</a></dt>
+<dd><p>A printable header for this section of output.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.input_only">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">input_only</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.input_only" title="Link to this definition">#</a></dt>
+<dd><p>Whether to write the input only, not run PySCF.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.is_runable">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_runable</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.is_runable" title="Link to this definition">#</a></dt>
+<dd><p>Whether this substep should be run by the top-level loop.</p>
+<p>Override to return False for substeps that only contribute input
+(e.g., an Initialization step) rather than invoking
+PySCF themselves.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.options">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.options" title="Link to this definition">#</a></dt>
+<dd><p>The PySCF options, delegated to the parent step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyscf_step.substep.Substep.version">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#pyscf_step.substep.Substep.version" title="Link to this definition">#</a></dt>
+<dd><p>The semantic version of the pyscf_step package.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.tk_pyscf">
+<span id="pyscf-step-tk-pyscf-module"></span><h2>pyscf_step.tk_pyscf module<a class="headerlink" href="#module-pyscf_step.tk_pyscf" title="Link to this heading">#</a></h2>
+<p>The graphical part of a PySCF step</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.tk_pyscf.</span></span><span class="sig-name descname"><span class="pre">TkPyscf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tk_flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'org.molssi.seamm.pyscf.tk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_pyscf.html#TkPyscf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TkNode</span></code></p>
+<p>The graphical part of a PySCF step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.tk_flowchart">
+<span class="sig-name descname"><span class="pre">tk_flowchart</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.tk_flowchart" title="Link to this definition">#</a></dt>
+<dd><p>The flowchart that we belong to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TkFlowchart = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.node">
+<span class="sig-name descname"><span class="pre">node</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.node" title="Link to this definition">#</a></dt>
+<dd><p>The corresponding node of the non-graphical flowchart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.canvas">
+<span class="sig-name descname"><span class="pre">canvas</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.canvas" title="Link to this definition">#</a></dt>
+<dd><p>The Tk Canvas to draw on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tkCanvas = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.dialog">
+<span class="sig-name descname"><span class="pre">dialog</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.dialog" title="Link to this definition">#</a></dt>
+<dd><p>The Pmw dialog object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dialog</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.x" title="Link to this definition">#</a></dt>
+<dd><p>The x-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.y" title="Link to this definition">#</a></dt>
+<dd><p>The y-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.w">
+<span class="sig-name descname"><span class="pre">w</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.w" title="Link to this definition">#</a></dt>
+<dd><p>The width in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 200</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.h" title="Link to this definition">#</a></dt>
+<dd><p>The height in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 50</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.self">
+<span class="sig-name descname"><span class="pre">self</span></span><span class="sig-paren">[</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">]</span><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.self" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of tk widgets built using the information
+contained in PySCF_parameters.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pyscf</span></code>, <a class="reference internal" href="#pyscf_step.tk_pyscf.TkPyscf" title="pyscf_step.tk_pyscf.TkPyscf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkPyscf</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">PyscfParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.create_dialog">
+<span class="sig-name descname"><span class="pre">create_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_pyscf.html#TkPyscf.create_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.create_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Create the dialog. A set of widgets will be chosen by default
+based on what is specified in the PySCF_parameters
+module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkPyscf.reset_dialog</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.tk_pyscf.TkPyscf.right_click">
+<span class="sig-name descname"><span class="pre">right_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_pyscf.html#TkPyscf.right_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_pyscf.TkPyscf.right_click" title="Link to this definition">#</a></dt>
+<dd><p>Handles the right click event on the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>Tk Event</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkPyscf.edit</span></code></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step.tk_spin_orbit">
+<span id="pyscf-step-tk-spin-orbit-module"></span><h2>pyscf_step.tk_spin_orbit module<a class="headerlink" href="#module-pyscf_step.tk_spin_orbit" title="Link to this heading">#</a></h2>
+<p>The graphical part of a Spin Orbit step</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pyscf_step.tk_spin_orbit.</span></span><span class="sig-name descname"><span class="pre">TkSpinOrbit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tk_flowchart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">canvas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_spin_orbit.html#TkSpinOrbit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TkNode</span></code></p>
+<p>The graphical part of a Spin Orbit step in a flowchart.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.tk_flowchart">
+<span class="sig-name descname"><span class="pre">tk_flowchart</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.tk_flowchart" title="Link to this definition">#</a></dt>
+<dd><p>The flowchart that we belong to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TkFlowchart = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.node">
+<span class="sig-name descname"><span class="pre">node</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.node" title="Link to this definition">#</a></dt>
+<dd><p>The corresponding node of the non-graphical flowchart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.canvas">
+<span class="sig-name descname"><span class="pre">canvas</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.canvas" title="Link to this definition">#</a></dt>
+<dd><p>The Tk Canvas to draw on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tkCanvas = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.dialog">
+<span class="sig-name descname"><span class="pre">dialog</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.dialog" title="Link to this definition">#</a></dt>
+<dd><p>The Pmw dialog object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dialog</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.x" title="Link to this definition">#</a></dt>
+<dd><p>The x-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.y" title="Link to this definition">#</a></dt>
+<dd><p>The y-coordinate of the center of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.w">
+<span class="sig-name descname"><span class="pre">w</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.w" title="Link to this definition">#</a></dt>
+<dd><p>The width in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 200</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.h">
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.h" title="Link to this definition">#</a></dt>
+<dd><p>The height in pixels of the picture of the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int = 50</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.self">
+<span class="sig-name descname"><span class="pre">self</span></span><span class="sig-paren">[</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em><span class="sig-paren">]</span><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.self" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of tk widgets built using the information
+contained in Spin Orbit_parameters.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpinOrbit</span></code>, <a class="reference internal" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit" title="pyscf_step.tk_spin_orbit.TkSpinOrbit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkSpinOrbit</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">SpinOrbitParameters</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.create_dialog">
+<span class="sig-name descname"><span class="pre">create_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_spin_orbit.html#TkSpinOrbit.create_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.create_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Create the dialog. A set of widgets will be chosen by default
+based on what is specified in the Spin Orbit_parameters
+module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.reset_dialog" title="pyscf_step.tk_spin_orbit.TkSpinOrbit.reset_dialog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkSpinOrbit.reset_dialog</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.reset_dialog">
+<span class="sig-name descname"><span class="pre">reset_dialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_spin_orbit.html#TkSpinOrbit.reset_dialog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.reset_dialog" title="Link to this definition">#</a></dt>
+<dd><p>Layout the widgets in the dialog.</p>
+<p>The widgets are chosen by default from the information in
+Spin Orbit_parameter.</p>
+<p>This function simply lays them out row by row with
+aligned labels. You may wish a more complicated layout that
+is controlled by values of some of the control parameters.
+If so, edit or override this method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget</strong> (<em>Tk Widget = None</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.create_dialog" title="pyscf_step.tk_spin_orbit.TkSpinOrbit.create_dialog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkSpinOrbit.create_dialog</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscf_step.tk_spin_orbit.TkSpinOrbit.right_click">
+<span class="sig-name descname"><span class="pre">right_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyscf_step/tk_spin_orbit.html#TkSpinOrbit.right_click"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.right_click" title="Link to this definition">#</a></dt>
+<dd><p>Handles the right click event on the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>Tk Event</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TkSpinOrbit.edit</span></code></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyscf_step">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyscf_step" title="Link to this heading">#</a></h2>
+<p>pyscf_step
+A SEAMM plug-in for PySCF</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">pyscf_step</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pyscf_step.engine.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pyscf_step.engine package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal" tabindex="-1"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.basis">pyscf_step.basis module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.basis.BasisError"><code class="docutils literal notranslate"><span class="pre">BasisError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.basis.P_SHELL"><code class="docutils literal notranslate"><span class="pre">P_SHELL</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.basis.basis_and_ecp"><code class="docutils literal notranslate"><span class="pre">basis_and_ecp()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.basis.electron_basis"><code class="docutils literal notranslate"><span class="pre">electron_basis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.basis.has_element"><code class="docutils literal notranslate"><span class="pre">has_element()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.basis.scalar_ecp"><code class="docutils literal notranslate"><span class="pre">scalar_ecp()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.installer">pyscf_step.installer module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.GPU_PACKAGES"><code class="docutils literal notranslate"><span class="pre">GPU_PACKAGES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.Installer"><code class="docutils literal notranslate"><span class="pre">Installer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.Installer.check"><code class="docutils literal notranslate"><span class="pre">Installer.check()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.Installer.exe_version"><code class="docutils literal notranslate"><span class="pre">Installer.exe_version()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.Installer.install"><code class="docutils literal notranslate"><span class="pre">Installer.install()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.Installer.setup_parser"><code class="docutils literal notranslate"><span class="pre">Installer.setup_parser()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.Installer.update"><code class="docutils literal notranslate"><span class="pre">Installer.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.PROBE"><code class="docutils literal notranslate"><span class="pre">PROBE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.PYSCF"><code class="docutils literal notranslate"><span class="pre">PYSCF</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.assess"><code class="docutils literal notranslate"><span class="pre">assess()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.installer.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.metadata">pyscf_step.metadata module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.metadata.metadata"><code class="docutils literal notranslate"><span class="pre">metadata</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.pyscf">pyscf_step.pyscf module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf"><code class="docutils literal notranslate"><span class="pre">Pyscf</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.parser"><code class="docutils literal notranslate"><span class="pre">Pyscf.parser</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.options"><code class="docutils literal notranslate"><span class="pre">Pyscf.options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.subflowchart"><code class="docutils literal notranslate"><span class="pre">Pyscf.subflowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.parameters"><code class="docutils literal notranslate"><span class="pre">Pyscf.parameters</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.analyze"><code class="docutils literal notranslate"><span class="pre">Pyscf.analyze()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.description_text"><code class="docutils literal notranslate"><span class="pre">Pyscf.description_text()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.git_revision"><code class="docutils literal notranslate"><span class="pre">Pyscf.git_revision</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.run"><code class="docutils literal notranslate"><span class="pre">Pyscf.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.set_id"><code class="docutils literal notranslate"><span class="pre">Pyscf.set_id()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf.Pyscf.version"><code class="docutils literal notranslate"><span class="pre">Pyscf.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.pyscf_step">pyscf_step.pyscf_step module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf_step.PyscfStep"><code class="docutils literal notranslate"><span class="pre">PyscfStep</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf_step.PyscfStep.create_node"><code class="docutils literal notranslate"><span class="pre">PyscfStep.create_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf_step.PyscfStep.create_tk_node"><code class="docutils literal notranslate"><span class="pre">PyscfStep.create_tk_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf_step.PyscfStep.description"><code class="docutils literal notranslate"><span class="pre">PyscfStep.description()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.pyscf_step.PyscfStep.my_description"><code class="docutils literal notranslate"><span class="pre">PyscfStep.my_description</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.spin_orbit">pyscf_step.spin_orbit module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.ECP_BIBTEX"><code class="docutils literal notranslate"><span class="pre">ECP_BIBTEX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.ECP_PAPERS"><code class="docutils literal notranslate"><span class="pre">ECP_PAPERS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit"><code class="docutils literal notranslate"><span class="pre">SpinOrbit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.parser"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.parser</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.options"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.subflowchart"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.subflowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.parameters"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.parameters</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.analyze"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.analyze()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.description_text"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.description_text()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.git_revision"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.git_revision</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.header"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.header</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.run"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.SpinOrbit.version"><code class="docutils literal notranslate"><span class="pre">SpinOrbit.version</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit.n_functions"><code class="docutils literal notranslate"><span class="pre">n_functions()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.spin_orbit_parameters">pyscf_step.spin_orbit_parameters module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_parameters.SpinOrbitParameters"><code class="docutils literal notranslate"><span class="pre">SpinOrbitParameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_parameters.SpinOrbitParameters.parameters"><code class="docutils literal notranslate"><span class="pre">SpinOrbitParameters.parameters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.spin_orbit_step">pyscf_step.spin_orbit_step module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_step.SpinOrbitStep"><code class="docutils literal notranslate"><span class="pre">SpinOrbitStep</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.create_node"><code class="docutils literal notranslate"><span class="pre">SpinOrbitStep.create_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.create_tk_node"><code class="docutils literal notranslate"><span class="pre">SpinOrbitStep.create_tk_node()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.description"><code class="docutils literal notranslate"><span class="pre">SpinOrbitStep.description()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.spin_orbit_step.SpinOrbitStep.my_description"><code class="docutils literal notranslate"><span class="pre">SpinOrbitStep.my_description</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.substep">pyscf_step.substep module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep"><code class="docutils literal notranslate"><span class="pre">Substep</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.git_revision"><code class="docutils literal notranslate"><span class="pre">Substep.git_revision</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.global_options"><code class="docutils literal notranslate"><span class="pre">Substep.global_options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.header"><code class="docutils literal notranslate"><span class="pre">Substep.header</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.input_only"><code class="docutils literal notranslate"><span class="pre">Substep.input_only</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.is_runable"><code class="docutils literal notranslate"><span class="pre">Substep.is_runable</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.options"><code class="docutils literal notranslate"><span class="pre">Substep.options</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.substep.Substep.version"><code class="docutils literal notranslate"><span class="pre">Substep.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.tk_pyscf">pyscf_step.tk_pyscf module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf"><code class="docutils literal notranslate"><span class="pre">TkPyscf</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.tk_flowchart"><code class="docutils literal notranslate"><span class="pre">TkPyscf.tk_flowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.node"><code class="docutils literal notranslate"><span class="pre">TkPyscf.node</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.canvas"><code class="docutils literal notranslate"><span class="pre">TkPyscf.canvas</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.dialog"><code class="docutils literal notranslate"><span class="pre">TkPyscf.dialog</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.x"><code class="docutils literal notranslate"><span class="pre">TkPyscf.x</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.y"><code class="docutils literal notranslate"><span class="pre">TkPyscf.y</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.w"><code class="docutils literal notranslate"><span class="pre">TkPyscf.w</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.h"><code class="docutils literal notranslate"><span class="pre">TkPyscf.h</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.self"><code class="docutils literal notranslate"><span class="pre">TkPyscf.self</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.create_dialog"><code class="docutils literal notranslate"><span class="pre">TkPyscf.create_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_pyscf.TkPyscf.right_click"><code class="docutils literal notranslate"><span class="pre">TkPyscf.right_click()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step.tk_spin_orbit">pyscf_step.tk_spin_orbit module</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.tk_flowchart"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.tk_flowchart</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.node"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.node</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.canvas"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.canvas</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.dialog"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.dialog</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.x"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.x</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.y"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.y</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.w"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.w</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.h"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.h</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.self"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.self</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.create_dialog"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.create_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.reset_dialog"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.reset_dialog()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscf_step.tk_spin_orbit.TkSpinOrbit.right_click"><code class="docutils literal notranslate"><span class="pre">TkSpinOrbit.right_click()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pyscf_step">Module contents</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/api/pyscf_step.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

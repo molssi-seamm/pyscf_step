@@ -1,0 +1,109 @@
+pyscf\_step package
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pyscf_step.engine
+
+Submodules
+----------
+
+pyscf\_step.basis module
+------------------------
+
+.. automodule:: pyscf_step.basis
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.installer module
+----------------------------
+
+.. automodule:: pyscf_step.installer
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.metadata module
+---------------------------
+
+.. automodule:: pyscf_step.metadata
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.pyscf module
+------------------------
+
+.. automodule:: pyscf_step.pyscf
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.pyscf\_step module
+------------------------------
+
+.. automodule:: pyscf_step.pyscf_step
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.spin\_orbit module
+------------------------------
+
+.. automodule:: pyscf_step.spin_orbit
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.spin\_orbit\_parameters module
+------------------------------------------
+
+.. automodule:: pyscf_step.spin_orbit_parameters
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.spin\_orbit\_step module
+------------------------------------
+
+.. automodule:: pyscf_step.spin_orbit_step
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.substep module
+--------------------------
+
+.. automodule:: pyscf_step.substep
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.tk\_pyscf module
+----------------------------
+
+.. automodule:: pyscf_step.tk_pyscf
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+pyscf\_step.tk\_spin\_orbit module
+----------------------------------
+
+.. automodule:: pyscf_step.tk_spin_orbit
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: pyscf_step
+   :members:
+   :show-inheritance:
+   :undoc-members:
