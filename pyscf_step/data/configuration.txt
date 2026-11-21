@@ -1,0 +1,3 @@
+[pyscf-step]
+# The PySCF step has no options here yet. How PySCF is run (its conda environment)
+# is in pyscf.ini in the SEAMM installation's directory.

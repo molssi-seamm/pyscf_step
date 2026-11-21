@@ -1,6 +1,11 @@
 =======
 History
 =======
+2026.11.20.1 -- Bugfix: 'pyscf-step-installer check' failed
+    * The installer's check and show commands stopped with a missing
+      data/configuration.txt (the step's section of seamm.ini), which is now shipped.
+      Installing worked and is not affected.
+
 
 2026.11.20 -- First release: the spin-orbit correction for thermochemistry
     * The Spin Orbit sub-step gives the molecular (second-order) spin-orbit correction
