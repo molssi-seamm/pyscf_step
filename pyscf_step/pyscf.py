@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-"""Non-graphical part of the PySCF step in a SEAMM flowchart
-"""
+"""Non-graphical part of the PySCF step in a SEAMM flowchart"""
 
 import logging
-from pathlib import Path
 import importlib.resources
 import pprint  # noqa: F401
 import sys
@@ -66,7 +64,7 @@ class Pyscf(seamm.Node):
         title="PySCF",
         namespace="org.molssi.seamm.pyscf",
         extension=None,
-        logger=logger
+        logger=logger,
     ):
         """A step for PySCF in a SEAMM flowchart.
 
@@ -93,9 +91,7 @@ class Pyscf(seamm.Node):
         """
         logger.debug(f"Creating PySCF {self}")
         self.subflowchart = seamm.Flowchart(
-            parent=self,
-            name="PySCF",
-            namespace=namespace
+            parent=self, name="PySCF", namespace=namespace
         )  # yapf: disable
 
         super().__init__(
@@ -117,6 +113,7 @@ class Pyscf(seamm.Node):
     def git_revision(self):
         """The git version of this module."""
         return pyscf_step.__git_revision__
+
     def set_id(self, node_id):
         """Set the id for node to a given tuple"""
         self._id = node_id
@@ -151,12 +148,8 @@ class Pyscf(seamm.Node):
             try:
                 text += __(node.description_text(), indent=3 * " ").__str__()
             except Exception as e:
-                print(
-                    f"Error describing pyscf flowchart: {e} in {node}"
-                )
-                logger.critical(
-                    f"Error describing pyscf flowchart: {e} in {node}"
-                )
+                print(f"Error describing pyscf flowchart: {e} in {node}")
+                logger.critical(f"Error describing pyscf flowchart: {e} in {node}")
                 raise
             except:  # noqa: E722
                 print(
@@ -200,9 +193,7 @@ class Pyscf(seamm.Node):
 
         local = seamm.ExecLocal()
         result = local.run(
-            cmd=["PySCF", "-in", "molssi.dat"],
-            files=files,
-            return_files=[]
+            cmd=["PySCF", "-in", "molssi.dat"], files=files, return_files=[]
         )  # yapf: disable
 
         if result is None:

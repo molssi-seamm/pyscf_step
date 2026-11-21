@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Non-graphical part of the Spin Orbit step in a PySCF flowchart
-"""
+"""Non-graphical part of the Spin Orbit step in a PySCF flowchart"""
 
 import logging
 from pathlib import Path
@@ -60,11 +59,7 @@ class SpinOrbit(pyscf_step.Substep):
     """
 
     def __init__(
-        self,
-        flowchart=None,
-        title="Spin Orbit",
-        extension=None,
-        logger=logger
+        self, flowchart=None, title="Spin Orbit", extension=None, logger=logger
     ):
         """A substep for Spin Orbit in a subflowchart for PySCF.
 

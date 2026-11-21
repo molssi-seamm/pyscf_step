@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Non-graphical part of the Energy step in a PySCF flowchart
-"""
+"""Non-graphical part of the Energy step in a PySCF flowchart"""
 
 import logging
 from pathlib import Path
@@ -59,13 +58,7 @@ class Energy(pyscf_step.Substep):
     Energy, EnergyParameters
     """
 
-    def __init__(
-        self,
-        flowchart=None,
-        title="Energy",
-        extension=None,
-        logger=logger
-    ):
+    def __init__(self, flowchart=None, title="Energy", extension=None, logger=logger):
         """A substep for Energy in a subflowchart for PySCF.
 
         You may wish to change the title above, which is the string displayed
