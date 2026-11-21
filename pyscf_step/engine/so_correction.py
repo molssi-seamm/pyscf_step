@@ -26,7 +26,10 @@ unc-aug-cc-pVTZ-PP / unc-cc-pVQZ-PP.
 
 import numpy as np
 
-from .aoc import HARTREE_TO_KJ, _converge, _ghf_dm
+try:
+    from .aoc import HARTREE_TO_KJ, _converge, _ghf_dm
+except ImportError:  # run as flat files in a task's directory
+    from aoc import HARTREE_TO_KJ, _converge, _ghf_dm
 
 
 def molecule_pair(mol, check_scalar_limit=True):

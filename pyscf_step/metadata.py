@@ -143,3 +143,56 @@ units : str
 #         "units": "E_h",
 #     },
 # }
+
+# The results of the Spin Orbit sub-step (kJ/mol unless noted).
+metadata["results"] = {
+    "spin-orbit correction": {
+        "calculation": ["spin orbit"],
+        "description": (
+            "The molecular (second-order) spin-orbit correction to the atomization "
+            "energy, delta_SO = -E_SO(molecule) + sum of the atoms' E_SO(J-average)"
+        ),
+        "dimensionality": "scalar",
+        "property": "spin-orbit correction#PySCF#{model}",
+        "type": "float",
+        "units": "kJ/mol",
+    },
+    "E_SO molecule": {
+        "calculation": ["spin orbit"],
+        "description": "E(two-component) - E(scalar) of the molecule",
+        "dimensionality": "scalar",
+        "type": "float",
+        "units": "kJ/mol",
+    },
+    "E_SO atoms": {
+        "calculation": ["spin orbit"],
+        "description": "The sum of the atoms' E_SO(J-average) used in the correction",
+        "dimensionality": "scalar",
+        "type": "float",
+        "units": "kJ/mol",
+    },
+    "scalar energy": {
+        "calculation": ["spin orbit"],
+        "description": "The scalar SCF energy of the molecule",
+        "dimensionality": "scalar",
+        "type": "float",
+        "units": "E_h",
+    },
+    "two-component energy": {
+        "calculation": ["spin orbit"],
+        "description": "The two-component (spin-orbit) SCF energy of the molecule",
+        "dimensionality": "scalar",
+        "type": "float",
+        "units": "E_h",
+    },
+    "atomic spin-orbit": {
+        "calculation": ["spin orbit"],
+        "description": (
+            "Per element: the computed J splitting (cm^-1) and E_SO of the ground J "
+            "level and of the J average (kJ/mol)"
+        ),
+        "dimensionality": "{element: {term: value}}",
+        "type": "json",
+        "units": "",
+    },
+}

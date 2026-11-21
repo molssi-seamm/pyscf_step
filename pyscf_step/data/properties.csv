@@ -1,1 +1,2 @@
 Property,Type,Units,Description,URL
+spin-orbit correction#PySCF#{model},float,kJ/mol,"The molecular (second-order) spin-orbit correction to the atomization energy, two-component minus scalar SCF with the atomic J averages removed",

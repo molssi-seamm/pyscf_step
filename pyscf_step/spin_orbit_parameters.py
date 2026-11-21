@@ -11,88 +11,78 @@ logger = logging.getLogger(__name__)
 
 
 class SpinOrbitParameters(seamm.Parameters):  # noqa: E999
-    """
-    The control parameters for Spin Orbit.
-
-    You need to replace the "time" entry in dictionary below these comments with the
-    definitions of parameters to control this step. The keys are parameters for the
-    current plugin,the values are dictionaries as outlined below.
-
-    Examples
-    --------
-    ::
-
-        parameters = {
-            "time": {
-                "default": 100.0,
-                "kind": "float",
-                "default_units": "ps",
-                "enumeration": tuple(),
-                "format_string": ".1f",
-                "description": "Simulation time:",
-                "help_text": ("The time to simulate in the dynamics run.")
-            },
-        }
-
-    parameters : {str: {str: str}}
-        A dictionary containing the parameters for the current step.
-        Each key of the dictionary is a dictionary that contains the
-        the following keys:
-
-    parameters["default"] :
-        The default value of the parameter, used to reset it.
-
-    parameters["kind"] : enum()
-        Specifies the kind of a variable. One of  "integer", "float", "string",
-        "boolean", or "enum"
-
-        While the "kind" of a variable might be a numeric value, it may still have
-        enumerated custom values meaningful to the user. For instance, if the parameter
-        is a convergence criterion for an optimizer, custom values like "normal",
-        "precise", etc, might be adequate. In addition, any parameter can be set to a
-        variable of expression, indicated by having "$" as the first character in the
-        field. For example, $OPTIMIZER_CONV.
-
-    parameters["default_units"] : str
-        The default units, used for resetting the value.
-
-    parameters["enumeration"]: tuple
-        A tuple of enumerated values.
-
-    parameters["format_string"]: str
-        A format string for "pretty" output.
-
-    parameters["description"]: str
-        A short string used as a prompt in the GUI.
-
-    parameters["help_text"]: str
-        A longer string to display as help for the user.
+    """The control parameters for the Spin Orbit sub-step.
 
     See Also
     --------
-    SpinOrbit, TkSpinOrbit, SpinOrbit SpinOrbitParameters, Spin OrbitStep
+    SpinOrbit, TkSpinOrbit
     """
 
     parameters = {
-        "time": {
-            "default": 100.0,
-            "kind": "float",
-            "default_units": "ps",
-            "enumeration": tuple(),
-            "format_string": ".1f",
-            "description": "Simulation time:",
-            "help_text": ("The time to simulate in the dynamics run."),
+        "route": {
+            "default": "SO-ECP",
+            "kind": "enum",
+            "default_units": "",
+            "enumeration": ("SO-ECP",),
+            "format_string": "s",
+            "description": "Relativistic route:",
+            "help_text": (
+                "SO-ECP: two-component SCF with the spin-orbit part of the "
+                "energy-consistent pseudopotentials, minus the same scalar "
+                "calculation (Bross et al., J. Phys. Chem. A 127, 704 (2023))."
+            ),
         },
-        # # Results handling ... uncomment if needed
-        # "results": {
-        #     "default": {},
-        #     "kind": "dictionary",
-        #     "default_units": "",
-        #     "enumeration": tuple(),
-        #     "format_string": "",
-        #     "description": "results",
-        #     "help_text": "The results to save to variables or in tables.",
-        # },
+        "method": {
+            "default": "HF",
+            "kind": "enum",
+            "default_units": "",
+            "enumeration": ("HF",),
+            "format_string": "s",
+            "description": "Method:",
+            "help_text": "The SCF method. HF is the level Bross et al. recommend.",
+        },
+        "basis": {
+            "default": "cc-pVTZ-PP",
+            "kind": "string",
+            "default_units": "",
+            "enumeration": ("cc-pVTZ-PP", "aug-cc-pVTZ-PP", "cc-pVQZ-PP"),
+            "format_string": "s",
+            "description": "Basis set:",
+            "help_text": (
+                "The basis set, from the Basis Set Exchange, for the elements it "
+                "covers; its pseudopotentials must have published spin-orbit data."
+            ),
+        },
+        "other basis": {
+            "default": "cc-pVTZ",
+            "kind": "string",
+            "default_units": "",
+            "enumeration": ("cc-pVTZ", "aug-cc-pVTZ", "cc-pVQZ"),
+            "format_string": "s",
+            "description": "Basis set for other elements:",
+            "help_text": "The basis set for the elements the first one does not cover.",
+        },
+        "uncontract": {
+            "default": "yes",
+            "kind": "boolean",
+            "default_units": "",
+            "enumeration": ("yes", "no"),
+            "format_string": "s",
+            "description": "Uncontract the basis sets:",
+            "help_text": (
+                "Use the basis sets fully uncontracted, as Bross and Peterson "
+                "recommend for the spin-orbit term."
+            ),
+        },
+        "results": {
+            "default": {},
+            "kind": "dictionary",
+            "default_units": "",
+            "enumeration": tuple(),
+            "format_string": "",
+            "description": "results",
+            "help_text": "The results to save to variables or in tables.",
+        },
     }
 
     def __init__(self, defaults={}, data=None):

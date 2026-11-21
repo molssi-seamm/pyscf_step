@@ -2,12 +2,14 @@
 
 """Non-graphical part of the Spin Orbit step in a PySCF flowchart"""
 
+import json
 import logging
 from pathlib import Path
 import importlib.resources
 import pprint  # noqa: F401
 
 import pyscf_step  # noqa: E999
+from pyscf_step import basis as so_basis
 import molsystem
 import seamm
 from seamm_util import ureg, Q_  # noqa: F401
@@ -113,101 +115,219 @@ class SpinOrbit(pyscf_step.Substep):
         return pyscf_step.__git_revision__
 
     def description_text(self, P=None):
-        """Create the text description of what this step will do.
-        The dictionary of control values is passed in as P so that
-        the code can test values, etc.
-
-        Parameters
-        ----------
-        P: dict
-            An optional dictionary of the current values of the control
-            parameters.
-        Returns
-        -------
-        str
-            A description of the current step.
-        """
+        """A text description of what this step will do."""
         if not P:
             P = self.parameters.values_to_dict()
-
+        unc = "uncontracted " if P["uncontract"] else ""
         text = (
-            "Please replace this with a short summary of the "
-            "Spin Orbit step, including key parameters."
+            "The molecular spin-orbit correction to the atomization energy: "
+            f"{P['method']} with and without the spin-orbit part of the "
+            f"pseudopotentials ({P['route']}), {unc}{P['basis']} "
+            f"({P['other basis']} for other elements). The atoms with spin-orbit "
+            "pseudopotentials are done by spherical average-of-configuration SCF, "
+            "so that the correction is relative to their J-averaged energies."
         )
-
-        return self.header + "\n" + __(text, **P, indent=4 * " ").__str__()
+        return self.header + "\n" + __(text, indent=4 * " ").__str__()
 
     def run(self):
-        """Run a Spin Orbit step.
+        """Run the Spin Orbit step: the atoms, then the molecule, then delta_SO."""
+        import seamm_exec
 
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        seamm.Node
-            The next node object in the flowchart.
-        """
         next_node = super().run(printer)
-
-        # Get the values of the parameters, dereferencing any variables
         P = self.parameters.current_values_to_dict(
             context=seamm.flowchart_variables._data
         )
-
-        # Print what we are doing
         printer.important(__(self.description_text(P), indent=self.indent))
-
         directory = Path(self.directory)
         directory.mkdir(parents=True, exist_ok=True)
 
-        # Get the current system and configuration (ignoring the system...)
         _, configuration = self.get_system_configuration(None)
+        if configuration.periodicity != 0:
+            raise RuntimeError("The spin-orbit correction is for molecules only.")
+        symbols = list(configuration.atoms.symbols)
+        xyz = configuration.atoms.get_coordinates(fractionals=False)
+        charge = int(configuration.charge)
+        multiplicity = int(configuration.spin_multiplicity)
+        if multiplicity != 1:
+            raise RuntimeError(
+                "The spin-orbit correction is implemented for closed-shell molecules "
+                f"only (this one has multiplicity {multiplicity})."
+            )
 
-        # Results data
-        # data = {}
-
-        # Temporary code just to print the parameters. You will need to change
-        # this!
-        for key in P:
-            print("{:>15s} = {}".format(key, P[key]))
+        basis, ecp, info = so_basis.basis_and_ecp(
+            symbols, P["basis"], P["other basis"], uncontract=bool(P["uncontract"])
+        )
+        model = (
+            f"{P['method']}/{P['route']}/"
+            + ("unc-" if P["uncontract"] else "")
+            + P["basis"]
+        )
+        self._model = model
+        so_elements = sorted(ecp)
+        indent = self.indent + 4 * " "
+        if not so_elements:
             printer.normal(
                 __(
-                    "{key:>15s} = {value}",
+                    "No element has a spin-orbit pseudopotential, so the correction "
+                    "is zero.",
+                    indent=indent,
+                )
+            )
+            self.store_results(
+                configuration=configuration,
+                data={"spin-orbit correction": 0.0},
+                create_tables=self.parameters["results"].value != {},
+            )
+            return next_node
+        for element in so_elements:
+            if element not in so_basis.P_SHELL:
+                raise NotImplementedError(
+                    f"The {element} atom's J states need a spinor CI (open p2, p3 or "
+                    "p4 shell), which is not available yet."
+                )
+
+        # The tasks: one per element with an SO-ECP, and the molecule
+        files = {
+            name: (
+                importlib.resources.files("pyscf_step") / "engine" / name
+            ).read_text()
+            for name in ("so_driver.py", "aoc.py", "so_correction.py")
+        }
+        task_set = seamm_exec.TaskSet(self, directory=directory)
+        inputs = {}
+        for element in so_elements:
+            inputs[f"atom_{element}"] = {
+                "task": "atom",
+                "atoms": [[element, [0.0, 0.0, 0.0]]],
+                "basis": {element: basis[element]},
+                "ecp": {element: ecp[element]},
+                "spin": 1,
+                "n_p": so_basis.P_SHELL[element],
+            }
+        inputs["molecule"] = {
+            "task": "molecule",
+            "atoms": [[s, [float(x) for x in r]] for s, r in zip(symbols, xyz)],
+            "basis": basis,
+            "ecp": ecp,
+            "charge": charge,
+            "spin": 0,
+        }
+        for key, data in inputs.items():
+            nao = sum(n_functions(basis[a[0]]) for a in data["atoms"])
+            cores = 4 if data["task"] == "atom" else 8
+            memory = max(4e9, 3.0 * nao**4)
+            data["memory_mb"] = int(0.8 * memory / 1e6)
+            data["log"] = "pyscf.log"
+            task_files = dict(files)
+            task_files["input.json"] = json.dumps(data, indent=1)
+            task_set.add(
+                seamm_exec.Task(
                     key=key,
-                    value=P[key],
-                    indent=4 * " ",
-                    wrap=False,
-                    dedent=False,
+                    program="pyscf",
+                    cmd=["{code}", "so_driver.py", "input.json", "-o", "results.json"],
+                    files=task_files,
+                    return_files=["results.json", "pyscf.log"],
+                    resources=seamm_exec.Resources(
+                        ntasks=1, cpus_per_task=cores, mem_per_cpu=int(memory / cores)
+                    ),
+                    shell=True,
                 )
             )
 
-        # Analyze the results
-        self.analyze()
+        results = {}
+        for result in task_set.run():
+            record = None
+            if result.directory is not None:
+                path = Path(result.directory) / "results.json"
+                if path.exists():
+                    record = json.loads(path.read_text())
+            if record is None or "error" in record:
+                reason = (record or {}).get("error") or result.reason or "no result"
+                raise RuntimeError(f"PySCF task {result.key} failed: {reason}")
+            results[result.key] = record
 
-        # Add other citations here or in the appropriate place in the code.
-        # Add the bibtex to data/references.bib, and add a self.reference.cite
-        # similar to the above to actually add the citation to the references.
-
+        mol = results["molecule"]
+        atoms = {e: results[f"atom_{e}"] for e in so_elements}
+        counts = {e: symbols.count(e) for e in so_elements}
+        e_so_atoms = sum(counts[e] * atoms[e]["E_SO_Javg_kJ"] for e in so_elements)
+        delta = -mol["E_SO_kJ"] + e_so_atoms
+        data = {
+            "spin-orbit correction": delta,
+            "E_SO molecule": mol["E_SO_kJ"],
+            "E_SO atoms": e_so_atoms,
+            "scalar energy": mol["E_scalar"],
+            "two-component energy": mol["E_2c"],
+            "atomic spin-orbit": {
+                e: {
+                    "splitting_cm": atoms[e]["splitting_cm"],
+                    "E_SO_ground_kJ": atoms[e]["E_SO_ground_kJ"],
+                    "E_SO_Javg_kJ": atoms[e]["E_SO_Javg_kJ"],
+                }
+                for e in so_elements
+            },
+        }
+        self.analyze(data=data, info=info, counts=counts, mol=mol)
+        self.store_results(
+            configuration=configuration,
+            data=data,
+            create_tables=self.parameters["results"].value != {},
+        )
+        self.references.cite(
+            raw=BROSS_2023,
+            alias="Bross2023",
+            module="pyscf_step",
+            level=1,
+            note="The spin-orbit correction as two-component minus scalar SCF.",
+        )
         return next_node
 
-    def analyze(self, indent="", **kwargs):
-        """Do any analysis of the output from this step.
-
-        Also print important results to the local step.out file using
-        "printer".
-
-        Parameters
-        ----------
-        indent: str
-            An extra indentation for the output
-        """
-        printer.normal(
-            __(
-                "This is a placeholder for the results from the Spin Orbit step",
-                indent=4 * " ",
-                wrap=True,
-                dedent=False,
+    def analyze(self, indent="", data=None, info=None, counts=None, mol=None, **kwargs):
+        """Print the results."""
+        if data is None:
+            return
+        indent = self.indent + 4 * " "
+        lines = []
+        for element, terms in data["atomic spin-orbit"].items():
+            lines.append(
+                f"{element} atom ({info[element]['ecp']}, {info[element]['basis']}): "
+                f"J splitting {terms['splitting_cm']:.1f} cm^-1, "
+                f"E_SO(ground J) {terms['E_SO_ground_kJ']:.3f} kJ/mol, "
+                f"E_SO(J average) {terms['E_SO_Javg_kJ']:.3f} kJ/mol."
             )
+        lines.append(
+            f"Molecule: E(two-component) - E(scalar) = {data['E_SO molecule']:.3f} "
+            f"kJ/mol; the scalar-limit check (GHF without spin-orbit - RHF) is "
+            f"{mol.get('GHF_noSOC_minus_RHF', float('nan')):.1e} E_h."
         )
+        lines.append(
+            "The molecular spin-orbit correction to the atomization energy, "
+            "delta_SO = -E_SO(molecule) + sum of the atoms' E_SO(J average) = "
+            f"{data['spin-orbit correction']:.3f} kJ/mol."
+        )
+        lines.append(
+            "Known offset: with uncontracted cc-pVTZ-PP and experimental geometries "
+            "this method gives values 7-10 % below Bross et al.'s DIRAC values "
+            "(HI 2.19 vs 2.4, CH3I 2.33 vs 2.6, I2 7.57 vs 8.0 kJ/mol), likely from "
+            "the geometries and DIRAC's implementation. It is reported, not corrected."
+        )
+        for line in lines:
+            printer.normal(__(line, indent=indent))
+            printer.normal("")
+
+
+def n_functions(shells):
+    """The number of spherical functions in a PySCF basis list."""
+    return sum((2 * shell[0] + 1) * (len(shell[1]) - 1) for shell in shells)
+
+
+BROSS_2023 = """@article{Bross2023,
+  title = {Active Thermochemical Tables: Enthalpies of Formation of Bromo- and
+    Iodo-Methanes, Ethenes and Ethynes},
+  author = {Bross, David H. and Bacskay, George B. and Peterson, Kirk A. and
+    Ruscic, Branko},
+  journal = {J. Phys. Chem. A},
+  volume = {127},
+  pages = {704--723},
+  year = {2023},
+  doi = {10.1021/acs.jpca.2c07897}
+}"""

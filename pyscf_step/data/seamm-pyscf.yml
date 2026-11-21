@@ -1,0 +1,8 @@
+name: seamm-pyscf
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  # PySCF is installed with pip by `pyscf-step-installer` after the environment is
+  # created (and GPU4PySCF too, if asked); see pyscf_step/installer.py.
