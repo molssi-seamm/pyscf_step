@@ -1,3 +1,8 @@
+basis-set-exchange
+molsystem
+numpy
 seamm
+seamm-exec
+seamm-manager
 seamm-util
 seamm-widgets

@@ -35,7 +35,11 @@ A SEAMM plug-in for PySCF
 Features
 --------
 
-* Please edit this section!
+* The molecular spin-orbit correction to atomization energies (two-component minus
+  scalar SCF with the spin-orbit part of energy-consistent pseudopotentials, the atoms
+  by average-of-configuration SCF), for thermochemistry of molecules with I, Br and
+  other heavy p-block elements.
+* PySCF runs in its own environment, ``seamm-pyscf``, on the CPU, as SEAMM tasks.
 
 Acknowledgements
 ----------------

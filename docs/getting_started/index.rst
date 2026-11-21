@@ -4,28 +4,57 @@ Getting Started
 
 Installation
 ============
-The PySCF step is probably already installed in your SEAMM
-environment, but if not or if you wish to check, follow the directions for the `SEAMM
-Installer`_. The graphical installer is the easiest to use. In the SEAMM conda
-environment, simply type:: 
+The PySCF step is installed with the `SEAMM Manager`_. To add it, or bring it up to
+date::
 
-  seamm-installer
+  seamm-manager install pyscf-step
+  seamm-manager update pyscf-step
 
-or use the shortcut if you installed one. Switch to the second tab, `Components`, and
-check for `pyscf-step`. If it is not installed, or
-can be updated, check the box next to it and click `Install selected` or `Update
-selected` as appropriate.
+or use the Manager's window.
 
-The non-graphical installer is also straightforward::
+The calculations are done by PySCF_, which lives in its own conda environment,
+``seamm-pyscf``. Installing the step creates it: the Manager runs the step's
+installer, which
 
-  seamm-installer install --update pyscf-step
+* installs PySCF 2.15.0 from PyPI (for the CPU; wheels exist for Linux and macOS), the
+  version the step was validated with;
+* checks that PySCF imports and has the spin-orbit pseudopotential integrals the step
+  uses;
+* records the environment in ``pyscf.ini`` in the SEAMM installation's directory.
 
-will ensure both that it is installed and up-to-date.
+GPU4PySCF, for scalar HF and DFT on NVIDIA GPUs, is added only when asked for, with
+``gpu = yes`` in ``pyscf.ini`` or ``--gpu``; the relativistic calculations always run on
+the CPU. The installer can also be run by hand, e.g. to check a machine::
 
-.. _SEAMM Installer: https://molssi-seamm.github.io/installation/index.html
+  pyscf-step-installer install
+  pyscf-step-installer check
+  pyscf-step-installer update
 
-Replace this!
-=============
-Put an example or two here....
+On a cluster, run it on a login node or where the jobs will run. A ``pyscf.ini`` with
+``installation = local`` and ``code`` set to the full path of a Python that has PySCF
+uses that environment instead, which the installer then leaves alone.
 
-That should be enough to get started. For more detail about the functionality in this plug-in, see the :ref:`User Guide <user-guide>`.
+.. _SEAMM Manager: https://molssi-seamm.github.io/getting_started/installation/index.html
+.. _PySCF: https://pyscf.org
+
+A first calculation
+===================
+The Spin Orbit sub-step gives the molecular spin-orbit correction to the atomization
+energy of a molecule containing heavy p-block atoms such as iodine. A flowchart for
+hydrogen iodide::
+
+  title: HI spin-orbit correction
+  steps:
+  - FromSMILESStep: {smiles string: I}
+  - PySCF:
+      steps:
+      - SpinOrbit
+
+Run it as a job. The step computes the iodine atom and the molecule, each with and
+without spin-orbit, and prints the correction, about 2.2 kJ/mol for HI at its
+experimental bond length. The correction is stored as the property
+``spin-orbit correction#PySCF#HF/SO-ECP/unc-cc-pVTZ-PP``, so other steps and tables
+can use it.
+
+For what the numbers mean, the choices available and the method's validation, see the
+:ref:`User Guide <user-guide>`.

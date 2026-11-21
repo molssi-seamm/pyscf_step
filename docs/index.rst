@@ -1,7 +1,10 @@
 Welcome to the documentation for the PySCF SEAMM plug-in
 ========================================================
 
-PySCF <does what? replace this text>
+The PySCF step runs PySCF calculations in SEAMM flowcharts. Its Spin Orbit sub-step
+gives the molecular spin-orbit correction to atomization energies and heats of
+formation of molecules with heavy p-block atoms, as two-component minus scalar SCF
+with spin-orbit pseudopotentials.
 
 .. grid:: 1 1 2 2
 
@@ -41,7 +44,7 @@ PySCF <does what? replace this text>
    .. grid-item-card:: API Reference
       :margin: 0 3 0 0
 
-      The API for the Geometry Analysis Step
+      The API for the PySCF step
 
       .. button-link:: ./api/index.html
 	 :color: primary

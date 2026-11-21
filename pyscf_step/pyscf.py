@@ -179,38 +179,16 @@ class Pyscf(seamm.Node):
             The next node object in the flowchart.
         """
         next_node = super().run(printer)
-        # Get the first real node
+
+        # Make sure the subflowchart has the right root directory
+        self.subflowchart.root_directory = self.flowchart.root_directory
+        self.subflowchart.executor = self.flowchart.executor
+
+        # Each substep runs its own PySCF calculations (as seamm_exec tasks);
+        # run() returns the next substep, or None at the end.
         node = self.subflowchart.get_node("1").next()
-
-        input_data = []
         while node is not None:
-            keywords = node.get_input()
-            input_data.append(" ".join(keywords))
-            node = node.next()
-
-        files = {"molssi.dat": "\n".join(input_data)}
-        logger.info("molssi.dat:\n" + files["molssi.dat"])
-
-        local = seamm.ExecLocal()
-        result = local.run(
-            cmd=["PySCF", "-in", "molssi.dat"], files=files, return_files=[]
-        )  # yapf: disable
-
-        if result is None:
-            logger.error("There was an error running PySCF")
-            return None
-
-        logger.debug("\n" + pprint.pformat(result))
-
-        logger.info("stdout:\n" + result["stdout"])
-        if result["stderr"] != "":
-            logger.warning("stderr:\n" + result["stderr"])
-
-        # Analyze the results
-        self.analyze()
-        # Add other citations here or in the appropriate place in the code.
-        # Add the bibtex to data/references.bib, and add a self.reference.cite
-        # similar to the above to actually add the citation to the references.
+            node = node.run()
 
         return next_node
 

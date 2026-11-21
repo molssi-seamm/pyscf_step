@@ -37,7 +37,7 @@ setup(
     # Which Python importable modules should be included when your package is
     # installed, handled automatically by setuptools. Use 'exclude' to prevent
     # some specific subpackage(s) from being added, if needed
-    packages=find_packages(include=['pyscf_step']),
+    packages=find_packages(include=['pyscf_step', 'pyscf_step.*']),
 
     # Optional include package data to ship with your package. Customize
     # MANIFEST.in if the general case does not suit your needs. Comment out
@@ -50,6 +50,8 @@ setup(
     # Required packages, pulls from pip if needed; do not use for Conda
     # deployment
     install_requires=requirements,
+    # CI installs .[test]: PySCF for the regression tests against SEAMM 5877
+    extras_require={'test': ['pyscf==2.15.0']},
 
     test_suite='tests',
 
@@ -85,13 +87,14 @@ setup(
         'org.molssi.seamm.tk': [
             'PySCF = pyscf_step:PyscfStep',
         ],
+        'console_scripts': [
+            'pyscf-step-installer=pyscf_step.__main__:run',
+        ],
         'org.molssi.seamm.pyscf': [
             'SpinOrbit = pyscf_step:SpinOrbitStep',
-            'Energy = pyscf_step:EnergyStep',
         ],
         'org.molssi.seamm.pyscf.tk': [
             'SpinOrbit = pyscf_step:SpinOrbitStep',
-            'Energy = pyscf_step:EnergyStep',
         ],
     },
 )
