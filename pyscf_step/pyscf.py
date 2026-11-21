@@ -182,6 +182,7 @@ class Pyscf(seamm.Node):
 
         # Make sure the subflowchart has the right root directory
         self.subflowchart.root_directory = self.flowchart.root_directory
+        self.subflowchart.executor = self.flowchart.executor
 
         # Each substep runs its own PySCF calculations (as seamm_exec tasks);
         # run() returns the next substep, or None at the end.
