@@ -50,6 +50,8 @@ setup(
     # Required packages, pulls from pip if needed; do not use for Conda
     # deployment
     install_requires=requirements,
+    # CI installs .[test]: PySCF for the regression tests against SEAMM 5877
+    extras_require={'test': ['pyscf>=2.15,<2.16']},
 
     test_suite='tests',
 
