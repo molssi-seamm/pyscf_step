@@ -20,8 +20,9 @@ import seamm_manager
 
 logger = logging.getLogger(__name__)
 
-#: The PySCF the step was validated with (SEAMM 5876/5877/5879, 2026-11-20).
-PYSCF = "pyscf>=2.15,<2.16"
+#: The PySCF the step was validated with (SEAMM 5876/5877/5879, 2026-11-20). Pinned:
+#: 2.15.1 has no macOS arm64 wheel.
+PYSCF = "pyscf==2.15.0"
 
 #: The optional GPU packages (CUDA 12 build, as the Interaction EDA step uses).
 GPU_PACKAGES = ("gpu4pyscf-cuda12x>=1.9.1", "cupy-cuda12x[ctk]", "cutensor-cu12")

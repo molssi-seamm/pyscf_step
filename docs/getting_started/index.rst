@@ -16,7 +16,8 @@ The calculations are done by PySCF_, which lives in its own conda environment,
 ``seamm-pyscf``. Installing the step creates it: the Manager runs the step's
 installer, which
 
-* installs PySCF 2.15 from PyPI (for the CPU; wheels exist for Linux and macOS);
+* installs PySCF 2.15.0 from PyPI (for the CPU; wheels exist for Linux and macOS), the
+  version the step was validated with;
 * checks that PySCF imports and has the spin-orbit pseudopotential integrals the step
   uses;
 * records the environment in ``pyscf.ini`` in the SEAMM installation's directory.

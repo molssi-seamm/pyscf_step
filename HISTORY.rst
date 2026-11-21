@@ -17,4 +17,4 @@ History
       (7587 in their work; 7603 measured) and HI's correction 2.19 kJ/mol (2.4); our
       values are 7-10 % below theirs, which is reported with each result.
     * PySCF runs in its own conda environment, seamm-pyscf, which the installer
-      creates (PySCF 2.15, CPU; GPU4PySCF only on request).
+      creates (PySCF 2.15.0, CPU; GPU4PySCF only on request).
