@@ -104,7 +104,7 @@ def scalar_table(ecp, power=2):
 
 def worst_difference(ours, reference):
     """The largest difference between two {l: [(exponent, coefficient)]} tables:
-    absolute in the exponents, relative (to max(1, |c|)) in the coefficients."""
+    absolute in the exponents, relative (to max(1, abs(c))) in the coefficients."""
     worst = 0.0
     for lval, prims in reference.items():
         mine = ours.get(lval, [])

@@ -279,6 +279,22 @@ class SpinOrbit(pyscf_step.Substep):
             level=1,
             note="The spin-orbit correction as two-component minus scalar SCF.",
         )
+        self.references.cite(
+            raw=PYSCF_2020,
+            alias="pyscf2020",
+            module="pyscf_step",
+            level=1,
+            note="The PySCF program package.",
+        )
+        for element in so_elements:
+            for alias in ECP_PAPERS.get(element, ()):
+                self.references.cite(
+                    raw=ECP_BIBTEX[alias],
+                    alias=alias,
+                    module="pyscf_step",
+                    level=2,
+                    note=f"The {info[element]['ecp']} pseudopotential for {element}.",
+                )
         return next_node
 
     def analyze(self, indent="", data=None, info=None, counts=None, mol=None, **kwargs):
@@ -331,3 +347,43 @@ BROSS_2023 = """@article{Bross2023,
   year = {2023},
   doi = {10.1021/acs.jpca.2c07897}
 }"""
+
+PYSCF_2020 = """@article{pyscf2020,
+  title = {Recent developments in the {PySCF} program package},
+  author = {Sun, Qiming and others},
+  journal = {J. Chem. Phys.},
+  volume = {153},
+  pages = {024109},
+  year = {2020},
+  doi = {10.1063/5.0006074}
+}"""
+
+#: The pseudopotential papers, as the Basis Set Exchange cites them.
+ECP_BIBTEX = {
+    "peterson2003b": """@article{peterson2003b,
+  author = {Peterson, Kirk A. and Figgen, Detlev and Goll, Erich and Stoll, Hermann
+    and Dolg, Michael},
+  title = {Systematically convergent basis sets with relativistic pseudopotentials.
+    {II}. Small-core pseudopotentials and correlation consistent basis sets for the
+    post-d group 16-18 elements},
+  journal = {J. Chem. Phys.},
+  volume = {119},
+  pages = {11113--11123},
+  year = {2003},
+  doi = {10.1063/1.1622924}
+}""",
+    "peterson2006a": """@article{peterson2006a,
+  author = {Peterson, Kirk A. and Shepler, Benjamin C. and Figgen, Detlev and
+    Stoll, Hermann},
+  title = {On the Spectroscopic and Thermochemical Properties of {ClO}, {BrO}, {IO},
+    and Their Anions},
+  journal = {J. Phys. Chem. A},
+  volume = {110},
+  pages = {13877--13883},
+  year = {2006},
+  doi = {10.1021/jp065887l}
+}""",
+}
+
+#: The papers for each element's pseudopotential.
+ECP_PAPERS = {"Br": ("peterson2003b",), "I": ("peterson2003b", "peterson2006a")}

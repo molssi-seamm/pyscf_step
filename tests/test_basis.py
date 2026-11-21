@@ -38,11 +38,18 @@ def test_contracted_basis():
 
 
 def test_element_without_so_data_is_refused():
-    """Br's ECP10MDF has no SO data in the package yet: refused, not run scalar."""
+    """Sn has an ECP in cc-pVTZ-PP but no SO data here yet: refused, not run scalar."""
     with pytest.raises(ECPError, match="no spin-orbit data"):
-        basis.basis_and_ecp(["Br"], "cc-pVTZ-PP", "cc-pVTZ")
+        basis.basis_and_ecp(["Sn"], "cc-pVTZ-PP", "cc-pVTZ")
 
 
 def test_p_shells():
     assert basis.P_SHELL["I"] == 5 and basis.P_SHELL["Tl"] == 1
     assert "Te" not in basis.P_SHELL
+
+
+def test_bromine():
+    """Br's ECP10MDF with its SO part, checked against Stuttgart's block."""
+    _, e, info = basis.basis_and_ecp(["Br"], "cc-pVTZ-PP", "cc-pVTZ")
+    assert info["Br"]["ecp"] == "ECP10MDF" and e["Br"][0] == 10
+    assert info["Br"]["so_check"]["so"] < 1e-6
